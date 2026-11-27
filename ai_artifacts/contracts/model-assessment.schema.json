@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "risk_level",
+    "category",
+    "summary",
+    "signals",
+    "actions",
+    "limitations"
+  ],
+  "properties": {
+    "risk_level": {
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "UNKNOWN"
+      ]
+    },
+    "category": {
+      "enum": [
+        "IMPERSONATION",
+        "CREDENTIAL_THEFT",
+        "PAYMENT_SCAM",
+        "INVESTMENT_SCAM",
+        "JOB_SCAM",
+        "OTHER",
+        "NONE",
+        "UNDETERMINED"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "signals": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "evidence",
+          "explanation"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "IMPERSONATION",
+              "URGENCY",
+              "CREDENTIAL_REQUEST",
+              "PAYMENT_REQUEST",
+              "UNREALISTIC_REWARD",
+              "SECRECY",
+              "SUSPICIOUS_LINK",
+              "CONTEXT_INFERENCE",
+              "OTHER"
+            ]
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 180
+          },
+          "explanation": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          }
+        }
+      }
+    },
+    "actions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 180
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 180
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "risk_level": {
+            "const": "UNKNOWN"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "category": {
+            "const": "UNDETERMINED"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "risk_level": {
+            "const": "LOW"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "category": {
+            "const": "NONE"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "risk_level": {
+            "enum": [
+              "HIGH",
+              "MEDIUM"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "signals": {
+            "minItems": 1
+          },
+          "category": {
+            "enum": [
+              "IMPERSONATION",
+              "CREDENTIAL_THEFT",
+              "PAYMENT_SCAM",
+              "INVESTMENT_SCAM",
+              "JOB_SCAM",
+              "OTHER"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

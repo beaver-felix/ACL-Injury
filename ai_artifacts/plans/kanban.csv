@@ -1,0 +1,22 @@
+﻿id,owner,start_ict,due_ict,estimate_hours,depends_on,title,acceptance,status,priority
+A00,A,27/11,27/11,2,-,Chốt UX/scope và đề,"Product scope, wireframe states; xác nhận flow/FAQ với B/C",Ready,P0
+B00,B,27/11,27/11,3,-,Contract freeze + repo/infra spike,"Schema/fixture và port được 3 người duyệt; repo CI skeleton, public account/billing",Ready,P0
+C00,C,27/11,27/11,3,-,Model/provider spike,"3 text + 3 ảnh synthetic; pin model ID, quota/privacy/latency, structured JSON",Ready,P0
+A01,A,28/11,28/11,5,A00;B00,Extension capture + preview,"MV3 action, activeTab, HTTP(S) capture/crop/consent, paste fallback; không gửi ngầm",Backlog,P0
+B01,B,28/11,28/11,5,B00,FastAPI + Docker + public health,"Docker clean build, GET health public HTTPS, validation/fixture local, CI smoke",Backlog,P0
+C01,C,28/11,28/11,5,B00;C00,Vision engine + schema,"Text/image inference; prompt injection isolation, valid assessment and unit mock",Backlog,P0
+A02,A,29/11,29/11,5,A01;B00,Extension result + web demo,"Same adapter; web upload/paste/fixture, both render all enums/errors, consent",Backlog,P0
+B02,B,29/11,29/11,5,B01;C01,Real analyze integration,"Wire provider, body/image validation, timeout, no-store; deploy real end-to-end",Backlog,P0
+C02,C,29/11,29/11,5,C01,Fallback & dev fixture set,"UNKNOWN fallback, safe actions, 12 dev fixtures + lexical baseline; record real test",Backlog,P0
+A03,A,30/11,30/11,5,A02;B02,External UI E2E and polish,"Fresh Chrome, public web, capture consent network check, states keyboard/mobile web",Backlog,P0
+B03,B,30/11,30/11,5,B02,Security + integration gate,"Rate/concurrency, no logs, invalid/oversize, 429/timeouts, production rejects mock; all P0 smoke",Backlog,P0
+C03,C,30/11,30/11,5,C02;B02,Adversarial QA + holdout lock,"30 labeled cases stratified dev/holdout; independent labels, adversarial failures, prompt freeze",Backlog,P0
+A04,A,01/12,01/12,5,A03;B03,Demo UX & slide/guide drafts,"Guide URL/steps, 8 slide outline, fixture flows; fix P0 UI only",Backlog,P0
+B04,B,01/12,01/12,5,B03;A03;C03,Release hardening + README,"Clean build/CI, download extension with final API host, actual external smoke and README declarations",Backlog,P0
+C04,C,01/12,01/12,5,C03,Holdout evaluation + claims,"AI vs baseline same holdout, counts/precision/recall/FP/unknown/latency; limitations evidence",Backlog,P0
+A05,A,02/12,02/12,5,A04;C04;B04,Finalize guide/slides + UI freeze,"A4 1 page, slide PDF ≤10 pages with actual metrics, reviewed public URL",Backlog,P0
+B05,B,02/12,02/12,5,B04;C04;A04,Freeze release and source ZIP,"Tagged tested commit + image digest, ZIP checksum, README, clean unzip/run; retain hosting",Backlog,P0
+C05,C,02/12,02/12,5,C04;B04;A04,Record final demo MP4,≤3 min running real release candidate; no personal data; actual results/limitations,Backlog,P0
+A06,A,03/12,03/12,2,A05;B05,Independent guide test,"Guide-only fresh machine test, confirm PDF pages/links, sign off",Backlog,P0
+B06,B,03/12,03/12,3,A05;B05;C05;A06;C06,Final submission & runbook,"Leader submits all files before 18:00 ICT; capture receipt, hashes, maintain to 11/12",Backlog,P0
+C06,C,03/12,03/12,2,C05;B05,Final AI/video verification,"Validate MP4 duration, live AI text/image, model/quota until 11/12, sign off",Backlog,P0

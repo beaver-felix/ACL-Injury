@@ -1,0 +1,22 @@
+{
+  "request_id": "00000000-0000-4000-8000-000000000001",
+  "risk_level": "HIGH",
+  "category": "PAYMENT_SCAM",
+  "summary": "Có dấu hiệu yêu cầu trả phí để nhận thưởng. Chưa xác minh được tính xác thực.",
+  "signals": [
+    {
+      "kind": "PAYMENT_REQUEST",
+      "evidence": "xác minh khoản phí ngay để nhận thưởng",
+      "explanation": "Yêu cầu phí trước khi nhận thưởng là dấu hiệu cần kiểm tra độc lập."
+    }
+  ],
+  "actions": [
+    "Tạm dừng thanh toán.",
+    "Xác minh bằng kênh chính thức tự tìm."
+  ],
+  "limitations": [
+    "Chỉ dựa trên văn bản được cung cấp; chưa xác minh người gửi."
+  ],
+  "analysis_mode": "AI",
+  "latency_ms": 1234
+}

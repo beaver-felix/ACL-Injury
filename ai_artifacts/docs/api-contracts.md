@@ -1,5 +1,5 @@
 # API contracts v1
-PROPOSED until A/B/C freeze. Owner B, A/C review. Machine-readable response/error schema in `../contracts/`; change only through shared contract PR. UTF-8 JSON, HTTP(S), no authentication for bounded demo.
+PROPOSED until B freezes after compatibility verification across affected A/B/C producer/consumer paths. Owner and final decision: B; A/C supply lane compatibility evidence. Machine-readable response/error schema in `../contracts/`; change only through a B-authorized shared contract PR. UTF-8 JSON, HTTP(S), no authentication for bounded demo.
 
 ## GET /healthz
 200 `{"status":"ok","version":"<git-sha>"}`; no call to model. 503 if boot config invalid (or service refuses start).
@@ -31,4 +31,4 @@ Content-Type application/json. `source` enum `extension|web`; `consent` must be 
 B overrides default FastAPI validation error to envelope; no echoed values. Provider timeout/refusal/invalid result normally returns 200 UNKNOWN RULE_FALLBACK if engine can complete safely; true infrastructure error 503; never synthetic AI success. HTTP 30s client timeout aborts UI; may not cancel provider, do not auto-retry. `Retry-After` integer seconds for 429. `Cache-Control: no-store`. Error messages localized VN.
 
 ## Cross-lane handoff
-B first commits schemas & mock response fixture; A integrates using fixture, C uses `ModelAssessment` subset (same risk/category/summary/signals/actions/limitations, excluding request_id/latency/analysis_mode). B calls C engine interface described in ai-contract; only B wraps transport metadata; A maps enum labels, never recalculates risk. Run schema validation in CI on fixture, Pydantic output and TS runtime parser (or generated types + parser). Contract version not changed without all consumers agreeing. API key never sent to frontend. No hidden endpoints for user-controlled URLs.
+B first commits schemas & mock response fixture; A integrates using fixture, C uses `ModelAssessment` subset (same risk/category/summary/signals/actions/limitations, excluding request_id/latency/analysis_mode). B calls C engine interface described in ai-contract; only B wraps transport metadata; A maps enum labels, never recalculates risk. Run schema validation in CI on fixture, Pydantic output and TS runtime parser (or generated types + parser). Contract version changes only after B verifies every affected consumer and authorizes the coordinated migration. API key never sent to frontend. No hidden endpoints for user-controlled URLs.

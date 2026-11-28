@@ -12,6 +12,7 @@
 
 - Integrated increment: what works together now; fixture-only vs real.
 - Gate tests: command / pass-fail-not run / tested SHA / link.
+- Integration review/authorization: B decision and evidence link; for B-authored PR include separate read-only AI review report (not human approval).
 - Blockers: exact interface, owner, next action & time; P0 vs P1.
 - Decisions or deferrals: link decision-log; not duplicated.
 - Next day ready work: task IDs, verified baseline SHA and dependencies.

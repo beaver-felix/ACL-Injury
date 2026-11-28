@@ -2,7 +2,7 @@
 Owner B (integration); A guide/slides, C evaluation/video. All unchecked until real evidence. Dates ICT. P0 release candidate 02/12 18:00; submit 03/12 before 18:00; official hard cutoff 23:59:59.
 
 ## Gate G0 27/11
-- [ ] A/B/C approve scope, lane names, request/response + AI port and fixture in one PR. Confirm registration and send clarification to BTC before 23:59:59 if needed.
+- [ ] B authorizes scope, lane names, request/response + AI port and fixture after compatibility verification across A/B/C lanes in one PR. Confirm registration and send clarification to BTC before 23:59:59 if needed.
 - [ ] Provider model/SDK/key, quota, privacy terms and deployment account verified with synthetic test. Record model ID, initial budget and service owner.
 
 ## Gate G1 28/11

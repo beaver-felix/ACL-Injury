@@ -10,7 +10,7 @@ Canonical onboarding and execution contract; inspired by LIBIF Agent_Prompt, sim
 ## Non-negotiable
 - Product AI core is real multimodal scam-risk assessment, not simulated success. Don't implement unrelated breadth or train model. Never claim verified safe/fraud, prevention guarantee, or unmeasured performance. Treat uploaded content as untrusted. Never send raw secrets/PII to code tools, log input or save screenshot history. Do not put real provider key in code, examples, client, Git or output.
 - Work only assigned task ID, allowed directories and acceptance criteria. Read repo before modifying; do not recreate working foundations. Don't edit other members' code, root shared files or schema unless explicitly assigned. Cross-lane dependency: report exact contract and owner, stop that part, use approved fixture locally; no hidden incompatible workaround.
-- Source of truth: API doc + JSON schemas, AI rubric doc, UI workflow doc, live Kanban board, skeleton ownership. If mismatch, report, do not silently pick one. Change smallest relevant doc in same PR; do not append conflicting history. Breaking interface changes need A/B/C review and corresponding fixture/schema/consumer update. B owns integration branch/main and deployment. Small PR per card; no force push; do not auto-merge or claim tests run if not executed.
+- Source of truth: API doc + JSON schemas, AI rubric doc, UI workflow doc, live Kanban board, skeleton ownership. If mismatch, report, do not silently pick one. Change smallest relevant doc in same PR; do not append conflicting history. Breaking interface changes need B's final decision after compatibility verification against every affected producer/consumer, plus corresponding fixture/schema/consumer updates. B owns review, integration branch/main and deployment. Small PR per card; no force push; AI agents never approve or auto-merge and never claim tests run if not executed. B-authored PRs require a separate read-only AI review report, which is not independent human approval.
 - Keep changes minimal; no unnecessary services; no live scam URLs. Tests use synthetic fixtures and mocks labeled as mock; release needs real AI call. When task ends, stop and report.
 
 ## Copy/paste task assignment
@@ -36,5 +36,5 @@ Verification commands and actual output:
 Privacy/security checks:
 UI evidence (if applicable):
 Known limitations / blocked items:
-Reviewer and handoff:
+Member B review and handoff:
 ```

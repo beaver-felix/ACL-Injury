@@ -13,7 +13,7 @@ Repository hiện ở giai đoạn B00: chuẩn bị nền tảng, kiểm tra co
 - JSON Schema/fixtures canonical: [`ai_artifacts/contracts/`](ai_artifacts/contracts/).
 - Task và acceptance criteria: [`ai_artifacts/plans/kanban.md`](ai_artifacts/plans/kanban.md); board GitHub là nguồn trạng thái khi truy cập được.
 
-Các contract hiện vẫn là **PROPOSED** cho đến khi A/B/C cùng duyệt. Không xem việc validation pass là bằng chứng contract đã freeze.
+Các contract hiện vẫn là **PROPOSED** cho đến khi Member B freeze sau compatibility verification trên mọi producer/consumer liên quan. Không xem việc validation pass là bằng chứng contract đã freeze.
 
 ## Contract checks cục bộ
 
@@ -36,8 +36,8 @@ Sao chép `.env.example` thành `.env` ở máy local rồi thay placeholder b�
 
 - Nhánh tích hợp: `main`.
 - Nhánh task: `feat/<Task-ID>` hoặc `fix/<Task-ID>`; ví dụ `feat/B00`.
-- Mỗi task có một PR nhỏ, completion report theo template, CI thật và independent review.
-- Tác giả không tự approve, merge hoặc deploy. Thay đổi shared contract cần A/B/C duyệt.
+- Mỗi task có một PR nhỏ, completion report theo template, CI thật và review của Member B. PR do B implement cần thêm review report từ một AI session read-only tách biệt.
+- AI agent không tự approve, merge hoặc deploy. Member B authorize integration; shared contract chỉ đổi sau khi B verify compatibility với mọi producer/consumer bị ảnh hưởng.
 
 ## CI hiện tại và lộ trình mở rộng
 

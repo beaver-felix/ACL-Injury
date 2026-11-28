@@ -5,7 +5,7 @@ Bộ contract khởi tạo cho MoMo Tech Contest 2026 • v0.1 PROPOSED • 27/1
 ## Start here
 1. Mỗi coding session bắt đầu từ root `AGENTS.md`, sau đó theo read order trong file đó; đọc `docs/current-state.md` trước card và contract liên quan.
 2. Cả nhóm đọc `docs/product-brief.md`, `prompts/Agent_Prompt.md`, `plans/kanban.md`.
-3. Gán tên thật cho A/B/C; chốt contract v1 (A/B/C cùng duyệt) trước 18:00 ICT ngày 27/11.
+3. Gán tên thật cho A/B/C; B chốt contract v1 sau compatibility verification trên các lane liên quan trước 18:00 ICT ngày 27/11.
 4. Đọc `docs/architecture-alignment.md`, `docs/api-contracts.md`, `docs/ai-contract.md`, `docs/ui-workflow.md` và `skeletons/README.md` theo lane.
 5. Chuyển các card ở `plans/kanban.csv` vào GitHub Projects (hoặc Trello/Notion). CSV chỉ là dữ liệu import/seed; board là nguồn trạng thái sau khi import. Không duy trì hai board.
 6. Mỗi tối cập nhật `sprints/daily-log.md` bằng kết quả thật; ngày 02/12 freeze bản dự thi; 03/12 nộp trước 18:00.
@@ -15,7 +15,7 @@ Bộ contract khởi tạo cho MoMo Tech Contest 2026 • v0.1 PROPOSED • 27/1
 |---|---|---|
 | docs/product-brief.md | Đề thi, scope, giá trị và tiêu chí | A |
 | docs/architecture-alignment.md | Hệ thống, security, deployment | B |
-| docs/api-contracts.md + contracts/ | Wire protocol + schema + fixture | B, A/C duyệt |
+| docs/api-contracts.md + contracts/ | Wire protocol + schema + fixture | B quyết định; A/C cung cấp compatibility evidence |
 | docs/ai-contract.md | AI provider port, rules, prompt, đánh giá | C |
 | docs/ui-workflow.md | UI states, component contract | A |
 | docs/release-checklist.md | QA, demo, submission, runbook | B phối hợp A/C |

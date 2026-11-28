@@ -4,7 +4,7 @@ A00,A,27/11,27/11,2,-,Chốt UX/scope và đề,"Product scope, wireframe states
 - [ ] Phác wireframe 5 trạng thái idle/review/analyzing/result/error, nội dung tiếng Việt, 4 risk labels, no-safe-guarantee.
 - [ ] Chọn 3 tình huống mẫu giả lập (đáng nghi, bình thường, mơ hồ); thống nhất với C, không dùng thông tin người thật.
 - [ ] Xác nhận P0/P1/out of scope với B/C và ghi các quyết định còn chờ vào daily-log.","- [ ] Walkthrough cả hai client với B/C; kiểm tra mỗi trạng thái có hành động kế tiếp và thông báo lỗi.
-- [ ] Review wording consent, UNKNOWN/LOW; kiểm tra mock không được trình bày như AI thật.",Wireframe hoặc mô tả trạng thái đã duyệt; danh sách câu hỏi BTC; 3 mô tả fixture; scope sign-off. B00 nhận flow và ràng buộc; C00 nhận tình huống.,B (C góp ý tình huống/AI),"Task: A00 | Member A | P0 | 2h | Due 27/11/2026 ICT | Dependencies: -
+- [ ] Review wording consent, UNKNOWN/LOW; kiểm tra mock không được trình bày như AI thật.",Wireframe hoặc mô tả trạng thái đã duyệt; danh sách câu hỏi BTC; 3 mô tả fixture; scope sign-off. B00 nhận flow và ràng buộc; C00 nhận tình huống.,B,"Task: A00 | Member A | P0 | 2h | Due 27/11/2026 ICT | Dependencies: -
 
 **Mục tiêu / mô tả:** Chốt trải nghiệm, mục tiêu MVP và luồng minh họa để A/B/C không hiểu khác nhau về sản phẩm.
 
@@ -27,22 +27,22 @@ A00,A,27/11,27/11,2,-,Chốt UX/scope và đề,"Product scope, wireframe states
 
 **Expected deliverables & handoff:** Wireframe hoặc mô tả trạng thái đã duyệt; danh sách câu hỏi BTC; 3 mô tả fixture; scope sign-off. B00 nhận flow và ràng buộc; C00 nhận tình huống.
 
-**Reviewer:** B (C góp ý tình huống/AI)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD"
-B00,B,27/11,27/11,3,-,Contract freeze + repo/infra spike,"Schema/fixture và port được 3 người duyệt; repo CI skeleton, public account/billing",Ready,P0,"Freeze ranh giới giữa ba lane, chuẩn bị repo và dịch vụ deploy để cả nhóm triển khai song song ngay hôm nay.",docs/architecture-alignment.md; docs/api-contracts.md; docs/ai-contract.md; contracts/; skeletons/README.md.,"contracts, backend/app/contracts.py nếu khởi tạo, root config/README, .github/workflows/**; A/C duyệt schema.","- [ ] Khởi tạo Git repo, main, .gitignore (.env, node_modules, caches, scans), PR template, CI skeleton; mời A/C và phân branch feat/<ID>.
+B00,B,27/11,27/11,3,-,Contract freeze + repo/infra spike,"Schema/fixture và port được B freeze sau compatibility verification; repo CI skeleton, public account/billing",Ready,P0,"Freeze ranh giới giữa ba lane, chuẩn bị repo và dịch vụ deploy để cả nhóm triển khai song song ngay hôm nay.",docs/architecture-alignment.md; docs/api-contracts.md; docs/ai-contract.md; contracts/; skeletons/README.md.,"contracts, backend/app/contracts.py nếu khởi tạo, root config/README, .github/workflows/**; B governs schema, A/C cung cấp compatibility evidence.","- [ ] Khởi tạo Git repo, main, .gitignore (.env, node_modules, caches, scans), PR template, CI skeleton; mời A/C và phân branch feat/<ID>.
 - [ ] Review JSON Schema và fixtures: source/consent/text/image/page_host; risk/category/mode; error envelope; semantic invariants trong API doc.
 - [ ] Chốt AnalysisInput, ModelAssessment, EngineResult, async assess port; B sở hữu transport metadata, C sở hữu inference; A render-only.
 - [ ] Kiểm thử schema với example request/response/error; thống nhất dùng ai_artifacts/contracts làm nguồn canonical, không tạo bản copy lệch.
 - [ ] Xác minh account cloud/billing, quyền deploy, ngân sách/secret store và phương án dự phòng; phối hợp C00 provider key/quota; không chia sẻ secret qua Git.
-- [ ] Chốt owner, review và timestamp freeze với cả 3; xác nhận FAQ/deadline và gửi câu hỏi BTC nếu cần trước hạn.","- [ ] Schema/examples hợp lệ, repo access A/B/C, CI skeleton chạy hoặc ghi blocker; xác nhận provider/cloud với bằng chứng không lộ key.
-- [ ] A/C đọc và đồng ý field names, limits, error semantics, port trước khi merge.","PR contract freeze G0, commit SHA, infra decision, `.env.example` placeholders nếu có; A01/C01/B01 nhận frozen interface.",C (A đồng duyệt contract),"Task: B00 | Member B | P0 | 3h | Due 27/11/2026 ICT | Dependencies: -
+- [ ] B chốt owner, compatibility evidence và timestamp freeze; xác nhận FAQ/deadline và gửi câu hỏi BTC nếu cần trước hạn.","- [ ] Schema/examples hợp lệ, repo access A/B/C, CI skeleton chạy hoặc ghi blocker; xác nhận provider/cloud với bằng chứng không lộ key.
+- [ ] B xác minh field names, limits, error semantics và port tương thích với A/C producer/consumer paths trước khi freeze.","PR contract freeze G0, commit SHA, infra decision, `.env.example` placeholders nếu có; A01/C01/B01 nhận frozen interface.",B,"Task: B00 | Member B | P0 | 3h | Due 27/11/2026 ICT | Dependencies: -
 
 **Mục tiêu / mô tả:** Freeze ranh giới giữa ba lane, chuẩn bị repo và dịch vụ deploy để cả nhóm triển khai song song ngay hôm nay.
 
 **Required reading:** docs/architecture-alignment.md; docs/api-contracts.md; docs/ai-contract.md; contracts/; skeletons/README.md.
 
-**File ownership:** contracts, backend/app/contracts.py nếu khởi tạo, root config/README, .github/workflows/**; A/C duyệt schema.
+**File ownership:** contracts, backend/app/contracts.py nếu khởi tạo, root config/README, .github/workflows/**; B governs schema, A/C cung cấp compatibility evidence.
 
 **Implementation checklist:**
 - [ ] Khởi tạo Git repo, main, .gitignore (.env, node_modules, caches, scans), PR template, CI skeleton; mời A/C và phân branch feat/<ID>.
@@ -50,25 +50,25 @@ B00,B,27/11,27/11,3,-,Contract freeze + repo/infra spike,"Schema/fixture và por
 - [ ] Chốt AnalysisInput, ModelAssessment, EngineResult, async assess port; B sở hữu transport metadata, C sở hữu inference; A render-only.
 - [ ] Kiểm thử schema với example request/response/error; thống nhất dùng ai_artifacts/contracts làm nguồn canonical, không tạo bản copy lệch.
 - [ ] Xác minh account cloud/billing, quyền deploy, ngân sách/secret store và phương án dự phòng; phối hợp C00 provider key/quota; không chia sẻ secret qua Git.
-- [ ] Chốt owner, review và timestamp freeze với cả 3; xác nhận FAQ/deadline và gửi câu hỏi BTC nếu cần trước hạn.
+- [ ] B chốt owner, compatibility evidence và timestamp freeze; xác nhận FAQ/deadline và gửi câu hỏi BTC nếu cần trước hạn.
 
-**Acceptance criteria (gốc):** Schema/fixture và port được 3 người duyệt; repo CI skeleton, public account/billing
+**Acceptance criteria (gốc):** Schema/fixture và port được B freeze sau compatibility verification; repo CI skeleton, public account/billing
 
 **Testing checklist:**
 - [ ] Schema/examples hợp lệ, repo access A/B/C, CI skeleton chạy hoặc ghi blocker; xác nhận provider/cloud với bằng chứng không lộ key.
-- [ ] A/C đọc và đồng ý field names, limits, error semantics, port trước khi merge.
+- [ ] B xác minh field names, limits, error semantics và port tương thích với A/C producer/consumer paths trước khi freeze.
 
 **Expected deliverables & handoff:** PR contract freeze G0, commit SHA, infra decision, `.env.example` placeholders nếu có; A01/C01/B01 nhận frozen interface.
 
-**Reviewer:** C (A đồng duyệt contract)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD"
 C00,C,27/11,27/11,3,-,Model/provider spike,"3 text + 3 ảnh synthetic; pin model ID, quota/privacy/latency, structured JSON",Ready,P0,Kiểm chứng model vision thực tế trước khi chọn provider; tránh cam kết model chưa có key/quota.,docs/ai-contract.md; research/stack-and-market.md; docs/product-brief.md; contracts/model-assessment.schema.json.,ghi chú model spike của C trong evaluation/ hoặc research; không sửa shared contract.,"- [ ] Dùng SDK/model vision được account hỗ trợ, kiểm tra key hợp lệ, quota, billing, data use/retention và terms; secret chỉ qua env.
 - [ ] Chuẩn bị 3 text + 3 screenshot synthetic có risky/benign/ambiguous; không dùng dữ liệu thật hoặc link lừa đảo hoạt động.
 - [ ] Gọi thử multimodal và structured output, validate JSON với schema/semantic rules; đo elapsed và ghi lỗi/truncation.
 - [ ] So sánh ít nhất tính khả dụng, chất lượng VN, độ trễ và chi phí dự kiến giữa lựa chọn khả thi; pin model ID/SDK version đã test, đề xuất fallback provider nếu lỗi.
-- [ ] Ghi provider privacy disclosure, budget/quota đến 11/12 và risk; gửi B config names, requirements đề xuất, A/C xác nhận G0.","- [ ] 6 synthetic calls, ghi actual pass/fail, latency, mode, model ID; không ghi key/ảnh thật; kiểm tra text/image-only.
-- [ ] Nếu không có model usable, đánh dấu Blocked và báo B00 ngay, không fake success; switch chỉ sau team duyệt.","Spike report, verified model ID, SDK/version, quota/terms decision; B00/B01 nhận dependency/env, C01 nhận provider configuration.",A (B duyệt infra/quota),"Task: C00 | Member C | P0 | 3h | Due 27/11/2026 ICT | Dependencies: -
+- [ ] Ghi provider privacy disclosure, budget/quota đến 11/12 và risk; gửi B config names/requirements và A/C lane evidence để B quyết định G0.","- [ ] 6 synthetic calls, ghi actual pass/fail, latency, mode, model ID; không ghi key/ảnh thật; kiểm tra text/image-only.
+- [ ] Nếu không có model usable, đánh dấu Blocked và báo B00 ngay, không fake success; switch chỉ sau B authorize.","Spike report, verified model ID, SDK/version, quota/terms decision; B00/B01 nhận dependency/env, C01 nhận provider configuration.",B,"Task: C00 | Member C | P0 | 3h | Due 27/11/2026 ICT | Dependencies: -
 
 **Mục tiêu / mô tả:** Kiểm chứng model vision thực tế trước khi chọn provider; tránh cam kết model chưa có key/quota.
 
@@ -81,17 +81,17 @@ C00,C,27/11,27/11,3,-,Model/provider spike,"3 text + 3 ảnh synthetic; pin mode
 - [ ] Chuẩn bị 3 text + 3 screenshot synthetic có risky/benign/ambiguous; không dùng dữ liệu thật hoặc link lừa đảo hoạt động.
 - [ ] Gọi thử multimodal và structured output, validate JSON với schema/semantic rules; đo elapsed và ghi lỗi/truncation.
 - [ ] So sánh ít nhất tính khả dụng, chất lượng VN, độ trễ và chi phí dự kiến giữa lựa chọn khả thi; pin model ID/SDK version đã test, đề xuất fallback provider nếu lỗi.
-- [ ] Ghi provider privacy disclosure, budget/quota đến 11/12 và risk; gửi B config names, requirements đề xuất, A/C xác nhận G0.
+- [ ] Ghi provider privacy disclosure, budget/quota đến 11/12 và risk; gửi B config names/requirements và A/C lane evidence để B quyết định G0.
 
 **Acceptance criteria (gốc):** 3 text + 3 ảnh synthetic; pin model ID, quota/privacy/latency, structured JSON
 
 **Testing checklist:**
 - [ ] 6 synthetic calls, ghi actual pass/fail, latency, mode, model ID; không ghi key/ảnh thật; kiểm tra text/image-only.
-- [ ] Nếu không có model usable, đánh dấu Blocked và báo B00 ngay, không fake success; switch chỉ sau team duyệt.
+- [ ] Nếu không có model usable, đánh dấu Blocked và báo B00 ngay, không fake success; switch chỉ sau B authorize.
 
 **Expected deliverables & handoff:** Spike report, verified model ID, SDK/version, quota/terms decision; B00/B01 nhận dependency/env, C01 nhận provider configuration.
 
-**Reviewer:** A (B duyệt infra/quota)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD"
 A01,A,28/11,28/11,5,A00;B00,Extension capture + preview,"MV3 action, activeTab, HTTP(S) capture/crop/consent, paste fallback; không gửi ngầm",Backlog,P0,"Xây Extension MV3 chạy được trên Chrome, thu đúng dữ liệu mà người dùng chủ động chọn, chưa phụ thuộc API thật.",docs/ui-workflow.md; docs/architecture-alignment.md (capture); contracts/request.schema.json.,extension/**; extension lockfile và test của A.,"- [ ] Khởi tạo WXT + React + TypeScript; manifest MV3, activeTab, host permission API chính xác (localhost chỉ dev), không all_urls/tabs/scripting/background capture.
@@ -133,7 +133,7 @@ B01,B,28/11,28/11,5,B00,FastAPI + Docker + public health,"Docker clean build, GE
 - [ ] Mount điểm phục vụ web dist và extension ZIP theo contract; chưa có dist thì ghi rõ dependency, không tạo demo fake; hỗ trợ CI build khi dist sẵn.
 - [ ] Deploy public HTTPS health trên Cloud Run hoặc nền tảng đã duyệt; secret server-side; kiểm tra access anonymous bounded demo, release không chấp nhận mock mode.
 - [ ] Thêm pytest/httpx smoke + schema fixture validation; thông báo URL ổn định A/C, ghi lệnh build/run thật.","- [ ] Clean checkout docker compose up --build; curl /healthz local và public HTTPS; test invalid request/error/no-store.
-- [ ] Kiểm tra image/layer/config không chứa secret; prod mock config phải bị từ chối; verify dev mock có banner phía client.","Dockerfile/compose, public health URL, CI log và API fixture test; B02 nhận routes/models, A02 nhận API origin.",C,"Task: B01 | Member B | P0 | 5h | Due 28/11/2026 ICT | Dependencies: B00
+- [ ] Kiểm tra image/layer/config không chứa secret; prod mock config phải bị từ chối; verify dev mock có banner phía client.","Dockerfile/compose, public health URL, CI log và API fixture test; B02 nhận routes/models, A02 nhận API origin.",B,"Task: B01 | Member B | P0 | 5h | Due 28/11/2026 ICT | Dependencies: B00
 
 **Mục tiêu / mô tả:** Tạo FastAPI service một container, validation API cơ bản và endpoint health public để không trì hoãn deployment.
 
@@ -157,7 +157,7 @@ B01,B,28/11,28/11,5,B00,FastAPI + Docker + public health,"Docker clean build, GE
 
 **Expected deliverables & handoff:** Dockerfile/compose, public health URL, CI log và API fixture test; B02 nhận routes/models, A02 nhận API origin.
 
-**Reviewer:** C
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD"
 C01,C,28/11,28/11,5,B00;C00,Vision engine + schema,"Text/image inference; prompt injection isolation, valid assessment and unit mock",Backlog,P0,"Xây AI engine độc lập với HTTP, dùng multimodal model thật và trả ModelAssessment đúng port đã freeze.",docs/ai-contract.md; docs/api-contracts.md; contracts/model-assessment.schema.json; B00 port.,"backend/app/engine/**, backend/tests/engine/**; B sở hữu contracts.py và dependency lock.","- [ ] Tạo provider adapter injectable, async assess(input: AnalysisInput) -> EngineResult; đọc AI_PROVIDER/AI_MODEL/GEMINI_API_KEY/AI_TIMEOUT_SECONDS từ env, không hardcode key.
@@ -165,7 +165,7 @@ C01,C,28/11,28/11,5,B00;C00,Vision engine + schema,"Text/image inference; prompt
 - [ ] Dùng canonical prompt v1 và schema ModelAssessment; cấu hình output budget và variability thấp nếu hỗ trợ; pin prompt version và model ID.
 - [ ] Parse strict Pydantic + semantic check: HIGH/MEDIUM evidence, LOW NONE, UNKNOWN UNDETERMINED; mask PII; phân biệt evidence từ text/ảnh/suy luận.
 - [ ] Implement provider timeout/refusal/invalid-output handling tối thiểu để không crash; C02 hoàn thiện fallback; không đưa request_id/latency vào engine.","- [ ] Unit test fake adapter cho text/image/mixed, schema invalid, prompt injection, thiếu evidence, unsupported output; thực hiện real text+image smoke.
-- [ ] Kiểm tra không log input/raw response/key, không tools/URL; báo B dependency/port mismatch, không sửa shared files.","Engine module, prompt v1, unit test và real smoke evidence; B02 nhận import path, config, model ID, expected errors; C02 nhận adapter.",A,"Task: C01 | Member C | P0 | 5h | Due 28/11/2026 ICT | Dependencies: B00;C00
+- [ ] Kiểm tra không log input/raw response/key, không tools/URL; báo B dependency/port mismatch, không sửa shared files.","Engine module, prompt v1, unit test và real smoke evidence; B02 nhận import path, config, model ID, expected errors; C02 nhận adapter.",B,"Task: C01 | Member C | P0 | 5h | Due 28/11/2026 ICT | Dependencies: B00;C00
 
 **Mục tiêu / mô tả:** Xây AI engine độc lập với HTTP, dùng multimodal model thật và trả ModelAssessment đúng port đã freeze.
 
@@ -188,7 +188,7 @@ C01,C,28/11,28/11,5,B00;C00,Vision engine + schema,"Text/image inference; prompt
 
 **Expected deliverables & handoff:** Engine module, prompt v1, unit test và real smoke evidence; B02 nhận import path, config, model ID, expected errors; C02 nhận adapter.
 
-**Reviewer:** A
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD"
 A02,A,29/11,29/11,5,A01;B00,Extension result + web demo,"Same adapter; web upload/paste/fixture, both render all enums/errors, consent",Backlog,P0,Hoàn thiện Result UI và web demo dùng cùng wire contract với Extension; tách state xử lý mạng khỏi component hiển thị.,docs/ui-workflow.md; docs/api-contracts.md; contracts/example-response.json; contracts/error.schema.json.,"extension/**, demo/** và test/lockfile tương ứng.","- [ ] Tạo apiClient.analyze(payload, signal) với base URL build-time VITE_API_BASE_URL cho extension, relative path cho web; runtime validate response/error, timeout 30s, không auto-retry.
@@ -230,7 +230,7 @@ B02,B,29/11,29/11,5,B01;C01,Real analyze integration,"Wire provider, body/image 
 - [ ] Giới hạn tổng request ≤25s, AI timeout theo env (20s mặc định), cancel/timeout mapping theo contract; fallback UNKNOWN nếu engine trả an toàn, infra 503.
 - [ ] Cấu hình CORS chỉ nếu cần (verified extension origins, no wildcard credentials); web same-origin; không backend fetch page_host/URL.
 - [ ] Build và deploy revision thật; gắn public web dist và extension dev/release ZIP với host đúng; phối hợp A02/C02 run live smoke trước 29/11 tối.","- [ ] Test valid text/image/mixed, semantic invalid response, invalid base64/MIME, limits, consent, 503/timeout/no-store; kiểm tra no API key/raw input logs.
-- [ ] G2: Extension screenshot+paste và web upload+paste thực sự nhận response mode AI từ public endpoint; lưu request ID, commit, revision, test output.","Public real endpoint, Docker revision, integration evidence và danh sách lỗi; A03/B03/C03 nhận URL, schema/port version, test details.",C,"Task: B02 | Member B | P0 | 5h | Due 29/11/2026 ICT | Dependencies: B01;C01
+- [ ] G2: Extension screenshot+paste và web upload+paste thực sự nhận response mode AI từ public endpoint; lưu request ID, commit, revision, test output.","Public real endpoint, Docker revision, integration evidence và danh sách lỗi; A03/B03/C03 nhận URL, schema/port version, test details.",B,"Task: B02 | Member B | P0 | 5h | Due 29/11/2026 ICT | Dependencies: B01;C01
 
 **Mục tiêu / mô tả:** Kết nối AI engine thật và bảo đảm đường truyền input/output an toàn cho cả Extension và Web.
 
@@ -254,7 +254,7 @@ B02,B,29/11,29/11,5,B01;C01,Real analyze integration,"Wire provider, body/image 
 
 **Expected deliverables & handoff:** Public real endpoint, Docker revision, integration evidence và danh sách lỗi; A03/B03/C03 nhận URL, schema/port version, test details.
 
-**Reviewer:** C
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD"
 C02,C,29/11,29/11,5,C01,Fallback & dev fixture set,"UNKNOWN fallback, safe actions, 12 dev fixtures + lexical baseline; record real test",Backlog,P0,Xử lý AI failure trung thực và chuẩn bị dev dataset/baseline để cải thiện prompt trước holdout.,docs/ai-contract.md (pipeline/rubric/evaluation); C01 handoff; contracts/response.schema.json.,"backend/app/engine/**, backend/tests/engine/**, evaluation/**.","- [ ] Xây fallback RULE_FALLBACK luôn UNKNOWN/UNDETERMINED, lý do cụ thể, safe static actions, optional grounded lexical cues; không LOW/AI giả.
@@ -262,7 +262,7 @@ C02,C,29/11,29/11,5,C01,Fallback & dev fixture set,"UNKNOWN fallback, safe actio
 - [ ] Tạo lexical baseline cố định dựa request patterns/ngữ cảnh phủ định (không dùng keyword đơn lẻ); cùng quy tắc flagged HIGH/MEDIUM hoặc binary flag rõ ràng.
 - [ ] Tạo 12 dev fixture trong tổng 30, ID/label/modality/expected risk range; synthetic screenshot từ HTML local, `.example`/`.invalid`.
 - [ ] Chạy dev test thật, ghi model/prompt version/latency/schema results, cải thiện prompt trên dev only; phối hợp B02 G2 real analyze.","- [ ] Test timeout, refusal, malformed JSON, empty/unreadable, fabricated evidence, unsafe action, benign OTP warning; all fallback result đúng schema và mode.
-- [ ] Test baseline với risky/benign/ambiguous, verify không gửi PII; record real scan request ID không lộ input.","Fallback policy/tests, 12 dev fixtures + labels, baseline runner, dev metrics; C03 nhận bộ dev và prompt version, B03 nhận failure semantics.",A,"Task: C02 | Member C | P0 | 5h | Due 29/11/2026 ICT | Dependencies: C01
+- [ ] Test baseline với risky/benign/ambiguous, verify không gửi PII; record real scan request ID không lộ input.","Fallback policy/tests, 12 dev fixtures + labels, baseline runner, dev metrics; C03 nhận bộ dev và prompt version, B03 nhận failure semantics.",B,"Task: C02 | Member C | P0 | 5h | Due 29/11/2026 ICT | Dependencies: C01
 
 **Mục tiêu / mô tả:** Xử lý AI failure trung thực và chuẩn bị dev dataset/baseline để cải thiện prompt trước holdout.
 
@@ -285,7 +285,7 @@ C02,C,29/11,29/11,5,C01,Fallback & dev fixture set,"UNKNOWN fallback, safe actio
 
 **Expected deliverables & handoff:** Fallback policy/tests, 12 dev fixtures + labels, baseline runner, dev metrics; C03 nhận bộ dev và prompt version, B03 nhận failure semantics.
 
-**Reviewer:** A
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD"
 A03,A,30/11,30/11,5,A02;B02,External UI E2E and polish,"Fresh Chrome, public web, capture consent network check, states keyboard/mobile web",Backlog,P0,"Kiểm thử end-to-end trên môi trường ngoài máy dev và sửa lỗi UI P0, không mở thêm tính năng.",docs/ui-workflow.md; docs/release-checklist.md G2/G3; docs/api-contracts.md.,"extension/**, demo/**, UI tests của A; không sửa backend.","- [ ] Cài ZIP release từ public URL trên Chrome profile sạch; đối chiếu permissions và backend origin, thử capture synthetic page.
@@ -327,7 +327,7 @@ B03,B,30/11,30/11,5,B02,Security + integration gate,"Rate/concurrency, no logs, 
 - [ ] Test prod fail closed khi thiếu key/config hoặc mock; timeout/refusal/malformed provider theo C port, không fallback LOW/AI fake.
 - [ ] Chạy regression invalid/oversized/chunked, decompression bomb, MIME spoof, unknown fields, consent, invalid host; không có outbound fetch theo user input.
 - [ ] Chốt G3 với A/C; lỗi P0 có owner/deadline, hoãn P1 nếu chưa xanh.","- [ ] pytest với concurrent requests, rate window, 429 retry-after, cap; inspect synthetic sentinel không xuất hiện trong log/error; provider failure không lộ exception.
-- [ ] Smoke external web/extension và verify release path; run test/lint/build/CI theo script thật, ghi pass/fail.","Security regression report, rate config, privacy evidence, G3 decision; B04 nhận P0 issues và triển khai giới hạn production.",C,"Task: B03 | Member B | P0 | 5h | Due 30/11/2026 ICT | Dependencies: B02
+- [ ] Smoke external web/extension và verify release path; run test/lint/build/CI theo script thật, ghi pass/fail.","Security regression report, rate config, privacy evidence, G3 decision; B04 nhận P0 issues và triển khai giới hạn production.",B,"Task: B03 | Member B | P0 | 5h | Due 30/11/2026 ICT | Dependencies: B02
 
 **Mục tiêu / mô tả:** Hoàn thiện guardrails, kiểm thử tích hợp và bảo mật trước khi cho phép release/hardening.
 
@@ -351,7 +351,7 @@ B03,B,30/11,30/11,5,B02,Security + integration gate,"Rate/concurrency, no logs, 
 
 **Expected deliverables & handoff:** Security regression report, rate config, privacy evidence, G3 decision; B04 nhận P0 issues và triển khai giới hạn production.
 
-**Reviewer:** C
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD"
 C03,C,30/11,30/11,5,C02;B02,Adversarial QA + holdout lock,"30 labeled cases stratified dev/holdout; independent labels, adversarial failures, prompt freeze",Backlog,P0,"Kiểm thử đối kháng, hoàn thành và khóa bộ 30 fixture trước khi đánh giá holdout chính thức.",docs/ai-contract.md (evaluation); docs/release-checklist.md G3; C02 dev results; B02 live integration.,"evaluation/**, backend/app/engine/** và engine tests (dev-only tuning trước freeze).","- [ ] Hoàn thành ≥30 synthetic cases: 15 risky, 10 benign, 5 ambiguous; ≥12 image-only, ≥10 text-only, còn lại mixed; phân bố theo nhóm scam trong AI contract.
@@ -359,7 +359,7 @@ C03,C,30/11,30/11,5,C02;B02,Adversarial QA + holdout lock,"30 labeled cases stra
 - [ ] Tạo adversarial set riêng: ignore instructions trong text/ảnh, fabricated OTP, malicious HTML, blurry, unsafe action, malformed output, refusal, timeout; phối hợp B test media/limit.
 - [ ] Kiểm tra evidence grounded, no identity/fraud proof claim, no safe guarantee, no leak, no tool execution; UI nhận đúng fallback/mode với A.
 - [ ] Chỉ sửa prompt/policy dựa dev/adversarial; freeze model/prompt/baseline/fixture IDs và hash trước holdout; chưa chạy holdout.","- [ ] Run engine unit/adversarial, live synthetic smoke; verify labels/distribution và holdout chưa truy cập để tuning; G3 no critical safety issues.
-- [ ] Log failures bằng fixture ID/expected/predicted/mode/elapsed; báo A/B cross-lane bugs, không giả mạo kết quả.","30 labeled fixtures + split manifest/hash, adversarial report, frozen model/prompt/baseline; C04 nhận holdout locked, B04 nhận safety sign-off.",A (B duyệt integration),"Task: C03 | Member C | P0 | 5h | Due 30/11/2026 ICT | Dependencies: C02;B02
+- [ ] Log failures bằng fixture ID/expected/predicted/mode/elapsed; báo A/B cross-lane bugs, không giả mạo kết quả.","30 labeled fixtures + split manifest/hash, adversarial report, frozen model/prompt/baseline; C04 nhận holdout locked, B04 nhận safety sign-off.",B,"Task: C03 | Member C | P0 | 5h | Due 30/11/2026 ICT | Dependencies: C02;B02
 
 **Mục tiêu / mô tả:** Kiểm thử đối kháng, hoàn thành và khóa bộ 30 fixture trước khi đánh giá holdout chính thức.
 
@@ -382,7 +382,7 @@ C03,C,30/11,30/11,5,C02;B02,Adversarial QA + holdout lock,"30 labeled cases stra
 
 **Expected deliverables & handoff:** 30 labeled fixtures + split manifest/hash, adversarial report, frozen model/prompt/baseline; C04 nhận holdout locked, B04 nhận safety sign-off.
 
-**Reviewer:** A (B duyệt integration)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD"
 A04,A,01/12,01/12,5,A03;B03,Demo UX & slide/guide drafts,"Guide URL/steps, 8 slide outline, fixture flows; fix P0 UI only",Backlog,P0,Chuẩn bị câu chuyện sản phẩm và tài liệu ban giám khảo trong khi giữ UI ổn định.,docs/product-brief.md; docs/release-checklist.md; kết quả A03/B03.,"submission/guide, submission/slides và UI P0 trong extension/**, demo/**.","- [ ] Chọn demo journey với C: risky capture → evidence/action, benign hoặc ambiguous → caution, public web cùng API.
@@ -390,7 +390,7 @@ A04,A,01/12,01/12,5,A03;B03,Demo UX & slide/guide drafts,"Guide URL/steps, 8 sli
 - [ ] Lập slide outline khoảng 8 trang: problem, target, workflow, AI, architecture, evaluation, differentiation/impact, deployment/limits.
 - [ ] Xin B public URL ổn định, C model/prompt version và bảng số liệu dự kiến; chỉ để placeholder ghi rõ chưa đo trước C04.
 - [ ] Kiểm tra text UI demo, sửa lỗi P0 đã ghi nhận; không thêm animations, dashboard hay history.","- [ ] Đọc thử guide với thành viên không làm frontend; xác minh hướng dẫn không cần API key/local server.
-- [ ] Review slide claims: không khẳng định an toàn tuyệt đối, không đưa số liệu giả hay logo hàm ý MoMo chứng thực.","Guide draft, slide outline, demo flow có timestamp gợi ý, URL đã xác nhận; B04/C05 nhận luồng demo và asset; A05 chờ C04 metrics.",B (C duyệt AI claims),"Task: A04 | Member A | P0 | 5h | Due 01/12/2026 ICT | Dependencies: A03;B03
+- [ ] Review slide claims: không khẳng định an toàn tuyệt đối, không đưa số liệu giả hay logo hàm ý MoMo chứng thực.","Guide draft, slide outline, demo flow có timestamp gợi ý, URL đã xác nhận; B04/C05 nhận luồng demo và asset; A05 chờ C04 metrics.",B,"Task: A04 | Member A | P0 | 5h | Due 01/12/2026 ICT | Dependencies: A03;B03
 
 **Mục tiêu / mô tả:** Chuẩn bị câu chuyện sản phẩm và tài liệu ban giám khảo trong khi giữ UI ổn định.
 
@@ -413,7 +413,7 @@ A04,A,01/12,01/12,5,A03;B03,Demo UX & slide/guide drafts,"Guide URL/steps, 8 sli
 
 **Expected deliverables & handoff:** Guide draft, slide outline, demo flow có timestamp gợi ý, URL đã xác nhận; B04/C05 nhận luồng demo và asset; A05 chờ C04 metrics.
 
-**Reviewer:** B (C duyệt AI claims)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD"
 B04,B,01/12,01/12,5,B03;A03;C03,Release hardening + README,"Clean build/CI, download extension with final API host, actual external smoke and README declarations",Backlog,P0,Đưa sản phẩm lên bản release candidate có thể dựng lại và dùng độc lập; chuẩn bị README khai báo đầy đủ.,docs/release-checklist.md; docs/architecture-alignment.md; A03/C03 reports.,"Dockerfile, compose, backend infra, CI, root README, .env.example, download route; A chịu trách nhiệm UI dist.","- [ ] Pin versions/lockfiles, xác minh fresh build từ clean checkout; build web dist trong Docker hoặc copy verified dist đúng commit.
@@ -421,7 +421,7 @@ B04,B,01/12,01/12,5,B03;A03;C03,Release hardening + README,"Clean build/CI, down
 - [ ] Cấu hình public invoker/HTTPS, single instance, timeout, concurrency, secret và quota đến 11/12; kiểm tra health cheap.
 - [ ] Viết root README commands thật, architecture/model/prompt version, external service/licences, source/data provenance, AI tools, privacy/limits; A/C gửi declaration.
 - [ ] Chạy CI lint/test/build + Docker smoke, external network smoke cả client; xử lý P0 blocker, không thêm service.","- [ ] Fresh checkout Docker build/run + test, tải ZIP từ public URL và Load unpacked; verify dist API origin, no debug/mock/key in release.
-- [ ] Kiểm tra health/public analyze, log/config an toàn và chi phí/quota; ghi version/revision và lỗi còn tồn tại.","Release candidate revision, URL/download, root README và QA evidence; A05/C05 nhận đúng release candidate; B05 chuẩn bị tag/ZIP.",C,"Task: B04 | Member B | P0 | 5h | Due 01/12/2026 ICT | Dependencies: B03;A03;C03
+- [ ] Kiểm tra health/public analyze, log/config an toàn và chi phí/quota; ghi version/revision và lỗi còn tồn tại.","Release candidate revision, URL/download, root README và QA evidence; A05/C05 nhận đúng release candidate; B05 chuẩn bị tag/ZIP.",B,"Task: B04 | Member B | P0 | 5h | Due 01/12/2026 ICT | Dependencies: B03;A03;C03
 
 **Mục tiêu / mô tả:** Đưa sản phẩm lên bản release candidate có thể dựng lại và dùng độc lập; chuẩn bị README khai báo đầy đủ.
 
@@ -444,7 +444,7 @@ B04,B,01/12,01/12,5,B03;A03;C03,Release hardening + README,"Clean build/CI, down
 
 **Expected deliverables & handoff:** Release candidate revision, URL/download, root README và QA evidence; A05/C05 nhận đúng release candidate; B05 chuẩn bị tag/ZIP.
 
-**Reviewer:** C
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD"
 C04,C,01/12,01/12,5,C03,Holdout evaluation + claims,"AI vs baseline same holdout, counts/precision/recall/FP/unknown/latency; limitations evidence",Backlog,P0,"Đo AI so với rule baseline trên cùng holdout, cung cấp bằng chứng thật cho slide, video và release.",docs/ai-contract.md evaluation protocol; C03 frozen manifest; B04 candidate info.,"evaluation/runner, results, report; không sửa prompt/model trên holdout.","- [ ] Chạy baseline và AI trên cùng 18 holdout (9 risky/6 benign/3 unknown), dùng version đã freeze; ghi fixture ID, expected/predicted, mode, elapsed, schema status.
@@ -452,7 +452,7 @@ C04,C,01/12,01/12,5,C03,Holdout evaluation + claims,"AI vs baseline same holdout
 - [ ] Tính precision/recall/F1 nếu denominator >0, benign FPR, UNKNOWN rate/coverage, median/p95 nearest rank, schema-valid rate; raw counts và n.
 - [ ] Đối chiếu mục tiêu recall ≥80%, FPR ≤25%, valid 100%, p95 ≤15s warm low-load; ghi unmet và case thất bại; không che giấu.
 - [ ] Nếu cần sửa critical issue, báo nhóm và dùng dev set; holdout mới nếu retune, không báo lại số trên holdout cũ như independent test.","- [ ] Kiểm tra metrics bằng phép tính từ CSV, match sample count và model/prompt versions; kiểm tra fallback vs AI không gộp sai.
-- [ ] Review với A/B: claim chỉ trong phạm vi synthetic holdout, không khẳng định hiệu quả thực địa hoặc giảm thiệt hại.","Evaluation report + raw sanitized results + baseline comparison table + limitations; A05/C05 dùng số liệu chính xác, B05 nhận G4 evidence.",A,"Task: C04 | Member C | P0 | 5h | Due 01/12/2026 ICT | Dependencies: C03
+- [ ] B review claim dựa trên A requirements và evaluation evidence: chỉ trong phạm vi synthetic holdout, không khẳng định hiệu quả thực địa hoặc giảm thiệt hại.","Evaluation report + raw sanitized results + baseline comparison table + limitations; A05/C05 dùng số liệu chính xác, B05 nhận G4 evidence.",B,"Task: C04 | Member C | P0 | 5h | Due 01/12/2026 ICT | Dependencies: C03
 
 **Mục tiêu / mô tả:** Đo AI so với rule baseline trên cùng holdout, cung cấp bằng chứng thật cho slide, video và release.
 
@@ -471,19 +471,19 @@ C04,C,01/12,01/12,5,C03,Holdout evaluation + claims,"AI vs baseline same holdout
 
 **Testing checklist:**
 - [ ] Kiểm tra metrics bằng phép tính từ CSV, match sample count và model/prompt versions; kiểm tra fallback vs AI không gộp sai.
-- [ ] Review với A/B: claim chỉ trong phạm vi synthetic holdout, không khẳng định hiệu quả thực địa hoặc giảm thiệt hại.
+- [ ] B review claim dựa trên A requirements và evaluation evidence: chỉ trong phạm vi synthetic holdout, không khẳng định hiệu quả thực địa hoặc giảm thiệt hại.
 
 **Expected deliverables & handoff:** Evaluation report + raw sanitized results + baseline comparison table + limitations; A05/C05 dùng số liệu chính xác, B05 nhận G4 evidence.
 
-**Reviewer:** A
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD"
 A05,A,02/12,02/12,5,A04;C04;B04,Finalize guide/slides + UI freeze,"A4 1 page, slide PDF ≤10 pages with actual metrics, reviewed public URL",Backlog,P0,"Xuất guide và slide PDF cuối cùng theo đúng giới hạn nộp, đồng bộ với release candidate và kết quả đánh giá thật.",docs/release-checklist.md; A04 draft; C04 evaluation; B04 release info.,"submission/guide.pdf, submission/slides.pdf và nguồn thiết kế của A.","- [ ] Điền đúng public URL, link download extension, bước sử dụng và privacy disclosure; loại mọi placeholder.
 - [ ] Điền số liệu C04 với raw counts, holdout n, model/prompt version, baseline, limitations; không suy rộng giảm thiệt hại.
 - [ ] Chốt nội dung 8 slide (tối đa 10 trang) và guide tối đa 1 A4; link đọc được và click được nếu công cụ xuất hỗ trợ.
 - [ ] Kiểm tra fonts tiếng Việt, khoảng trắng, bố cục, contrast; ghi version theo commit/release B05.
-- [ ] Gửi B/C review các claims và URL; freeze UI, chỉ critical fix qua B và re-test.","- [ ] Mở PDF bằng trình đọc khác, kiểm tra page count, kích thước A4 guide, chữ không bị cắt, URL hoạt động.
-- [ ] Đối chiếu metrics với evaluation report và phiên bản release; không dùng screenshot chứa PII.",2 PDF final + sign-off + version; B06 nhận file/hashes để nộp; A06 dùng guide thực tế để kiểm tra độc lập.,B (C duyệt số liệu),"Task: A05 | Member A | P0 | 5h | Due 02/12/2026 ICT | Dependencies: A04;C04;B04
+- [ ] Gửi B review claims và URL, đối chiếu C evaluation evidence; freeze UI, chỉ critical fix qua B và re-test.","- [ ] Mở PDF bằng trình đọc khác, kiểm tra page count, kích thước A4 guide, chữ không bị cắt, URL hoạt động.
+- [ ] Đối chiếu metrics với evaluation report và phiên bản release; không dùng screenshot chứa PII.",2 PDF final + sign-off + version; B06 nhận file/hashes để nộp; A06 dùng guide thực tế để kiểm tra độc lập.,B,"Task: A05 | Member A | P0 | 5h | Due 02/12/2026 ICT | Dependencies: A04;C04;B04
 
 **Mục tiêu / mô tả:** Xuất guide và slide PDF cuối cùng theo đúng giới hạn nộp, đồng bộ với release candidate và kết quả đánh giá thật.
 
@@ -496,7 +496,7 @@ A05,A,02/12,02/12,5,A04;C04;B04,Finalize guide/slides + UI freeze,"A4 1 page, sl
 - [ ] Điền số liệu C04 với raw counts, holdout n, model/prompt version, baseline, limitations; không suy rộng giảm thiệt hại.
 - [ ] Chốt nội dung 8 slide (tối đa 10 trang) và guide tối đa 1 A4; link đọc được và click được nếu công cụ xuất hỗ trợ.
 - [ ] Kiểm tra fonts tiếng Việt, khoảng trắng, bố cục, contrast; ghi version theo commit/release B05.
-- [ ] Gửi B/C review các claims và URL; freeze UI, chỉ critical fix qua B và re-test.
+- [ ] Gửi B review claims và URL, đối chiếu C evaluation evidence; freeze UI, chỉ critical fix qua B và re-test.
 
 **Acceptance criteria (gốc):** A4 1 page, slide PDF ≤10 pages with actual metrics, reviewed public URL
 
@@ -506,15 +506,15 @@ A05,A,02/12,02/12,5,A04;C04;B04,Finalize guide/slides + UI freeze,"A4 1 page, sl
 
 **Expected deliverables & handoff:** 2 PDF final + sign-off + version; B06 nhận file/hashes để nộp; A06 dùng guide thực tế để kiểm tra độc lập.
 
-**Reviewer:** B (C duyệt số liệu)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD"
-B05,B,02/12,02/12,5,B04;C04;A04,Freeze release and source ZIP,"Tagged tested commit + image digest, ZIP checksum, README, clean unzip/run; retain hosting",Backlog,P0,"Freeze release 02/12 trước 18:00 ICT, tạo source ZIP đầy đủ và tái lập được; phối hợp C05 ghi hình đúng bản.",docs/release-checklist.md G4; B04 release record; C04 evaluation; A04 docs.,"submission/source.zip, release manifest, root README, deployment metadata; không tự sửa code lane khác.","- [ ] Xác nhận G4 với A/C: metrics thật, P0 tests, public URL, UI và AI release candidate; chốt commit/tag v0.1-contest và image digest.
+B05,B,02/12,02/12,5,B04;C04;A04,Freeze release and source ZIP,"Tagged tested commit + image digest, ZIP checksum, README, clean unzip/run; retain hosting",Backlog,P0,"Freeze release 02/12 trước 18:00 ICT, tạo source ZIP đầy đủ và tái lập được; phối hợp C05 ghi hình đúng bản.",docs/release-checklist.md G4; B04 release record; C04 evaluation; A04 docs.,"submission/source.zip, release manifest, root README, deployment metadata; không tự sửa code lane khác.","- [ ] B xác nhận G4 từ evidence A/C: metrics thật, P0 tests, public URL, UI và AI release candidate; chốt commit/tag v0.1-contest và image digest.
 - [ ] Đảm bảo C05 quay đúng revision, A05 dùng đúng URL/metrics; critical fix cần review, rebuild/re-test và quay lại phần bị ảnh hưởng trước freeze.
 - [ ] Đóng gói toàn bộ extension/demo/backend/evaluation/contracts/ai_artifacts + lockfiles, Dockerfile, compose, .env.example, README; không .env/keys/.git/node_modules/cache/raw scans.
 - [ ] Unzip vào thư mục sạch, kiểm tra cấu trúc và run/build theo README; kiểm tra secret scan và dependencies/licenses declarations.
 - [ ] Tính SHA256 source ZIP và extension ZIP, lưu release manifest (commit/tag/digest/public URL/model/prompt version/test times), đảm bảo hosting/quota tới 11/12.","- [ ] Test archive integrity, kiểm tra nội dung ZIP và clean smoke; đối chiếu public revision đúng image digest, extension ZIP đúng checksum.
-- [ ] Record CI/test thật, không đánh dấu pass nếu chưa chạy; xác nhận C05 video/A05 PDFs sẽ dùng cùng release.",source.zip + release manifest + verification log + sign-off; A06/C06 nhận revision/hash; B06 nhận source ZIP và runbook.,C,"Task: B05 | Member B | P0 | 5h | Due 02/12/2026 ICT | Dependencies: B04;C04;A04
+- [ ] Record CI/test thật, không đánh dấu pass nếu chưa chạy; xác nhận C05 video/A05 PDFs sẽ dùng cùng release.",source.zip + release manifest + verification log + sign-off; A06/C06 nhận revision/hash; B06 nhận source ZIP và runbook.,B,"Task: B05 | Member B | P0 | 5h | Due 02/12/2026 ICT | Dependencies: B04;C04;A04
 
 **Mục tiêu / mô tả:** Freeze release 02/12 trước 18:00 ICT, tạo source ZIP đầy đủ và tái lập được; phối hợp C05 ghi hình đúng bản.
 
@@ -523,7 +523,7 @@ B05,B,02/12,02/12,5,B04;C04;A04,Freeze release and source ZIP,"Tagged tested com
 **File ownership:** submission/source.zip, release manifest, root README, deployment metadata; không tự sửa code lane khác.
 
 **Implementation checklist:**
-- [ ] Xác nhận G4 với A/C: metrics thật, P0 tests, public URL, UI và AI release candidate; chốt commit/tag v0.1-contest và image digest.
+- [ ] B xác nhận G4 từ evidence A/C: metrics thật, P0 tests, public URL, UI và AI release candidate; chốt commit/tag v0.1-contest và image digest.
 - [ ] Đảm bảo C05 quay đúng revision, A05 dùng đúng URL/metrics; critical fix cần review, rebuild/re-test và quay lại phần bị ảnh hưởng trước freeze.
 - [ ] Đóng gói toàn bộ extension/demo/backend/evaluation/contracts/ai_artifacts + lockfiles, Dockerfile, compose, .env.example, README; không .env/keys/.git/node_modules/cache/raw scans.
 - [ ] Unzip vào thư mục sạch, kiểm tra cấu trúc và run/build theo README; kiểm tra secret scan và dependencies/licenses declarations.
@@ -537,15 +537,15 @@ B05,B,02/12,02/12,5,B04;C04;A04,Freeze release and source ZIP,"Tagged tested com
 
 **Expected deliverables & handoff:** source.zip + release manifest + verification log + sign-off; A06/C06 nhận revision/hash; B06 nhận source ZIP và runbook.
 
-**Reviewer:** C
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD"
 C05,C,02/12,02/12,5,C04;B04;A04,Record final demo MP4,≤3 min running real release candidate; no personal data; actual results/limitations,Backlog,P0,"Quay video demo sản phẩm chạy thật, thể hiện rõ giá trị AI, giữ thời lượng tối đa 3 phút.",docs/release-checklist.md demo script; C04 report; A04 demo flow; B04 release candidate.,submission/demo.mp4 và nguồn quay/dựng của C.,"- [ ] Xác nhận revision/model với B05 trước ghi hình; dùng synthetic page/screenshot và dữ liệu mẫu, không quay key, account, email thật hay tab cá nhân.
 - [ ] Storyboard ~165s: problem → Chrome capture/crop/consent → real result evidence/actions → benign/ambiguous → web demo cùng API → actual metrics/limitations.
 - [ ] Quay thực tế latency và response; không mock, không jump cut khiến người xem hiểu sai độ trễ; nếu request fail, xử lý trung thực hoặc quay lại.
 - [ ] Hiển thị phân biệt AI vs fallback, LOW không xác nhận an toàn, user quyết định; giải thích AI hiểu ngữ cảnh hơn lexical baseline theo số C04.
-- [ ] Xuất MP4 ≤180s, kiểm tra audio/subtitle tiếng Việt đọc được, không nội dung cá nhân; phối hợp A/B review trước freeze.","- [ ] Phát file từ đầu đến cuối, kiểm tra duration/codec/quality, không PII, link/demo revision khớp release manifest.
-- [ ] Nếu release thay đổi critical trước freeze, quay lại phần bị ảnh hưởng và đối chiếu metrics, không dùng clip cũ sai version.","demo.mp4 final + duration + revision + sign-off; C06 verify video, B06 nhận video final.",A (B duyệt revision),"Task: C05 | Member C | P0 | 5h | Due 02/12/2026 ICT | Dependencies: C04;B04;A04
+- [ ] Xuất MP4 ≤180s, kiểm tra audio/subtitle tiếng Việt đọc được, không nội dung cá nhân; gửi B review trước freeze và đối chiếu A demo flow.","- [ ] Phát file từ đầu đến cuối, kiểm tra duration/codec/quality, không PII, link/demo revision khớp release manifest.
+- [ ] Nếu release thay đổi critical trước freeze, quay lại phần bị ảnh hưởng và đối chiếu metrics, không dùng clip cũ sai version.","demo.mp4 final + duration + revision + sign-off; C06 verify video, B06 nhận video final.",B,"Task: C05 | Member C | P0 | 5h | Due 02/12/2026 ICT | Dependencies: C04;B04;A04
 
 **Mục tiêu / mô tả:** Quay video demo sản phẩm chạy thật, thể hiện rõ giá trị AI, giữ thời lượng tối đa 3 phút.
 
@@ -558,7 +558,7 @@ C05,C,02/12,02/12,5,C04;B04;A04,Record final demo MP4,≤3 min running real rele
 - [ ] Storyboard ~165s: problem → Chrome capture/crop/consent → real result evidence/actions → benign/ambiguous → web demo cùng API → actual metrics/limitations.
 - [ ] Quay thực tế latency và response; không mock, không jump cut khiến người xem hiểu sai độ trễ; nếu request fail, xử lý trung thực hoặc quay lại.
 - [ ] Hiển thị phân biệt AI vs fallback, LOW không xác nhận an toàn, user quyết định; giải thích AI hiểu ngữ cảnh hơn lexical baseline theo số C04.
-- [ ] Xuất MP4 ≤180s, kiểm tra audio/subtitle tiếng Việt đọc được, không nội dung cá nhân; phối hợp A/B review trước freeze.
+- [ ] Xuất MP4 ≤180s, kiểm tra audio/subtitle tiếng Việt đọc được, không nội dung cá nhân; gửi B review trước freeze và đối chiếu A demo flow.
 
 **Acceptance criteria (gốc):** ≤3 min running real release candidate; no personal data; actual results/limitations
 
@@ -568,7 +568,7 @@ C05,C,02/12,02/12,5,C04;B04;A04,Record final demo MP4,≤3 min running real rele
 
 **Expected deliverables & handoff:** demo.mp4 final + duration + revision + sign-off; C06 verify video, B06 nhận video final.
 
-**Reviewer:** A (B duyệt revision)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD"
 A06,A,03/12,03/12,2,A05;B05,Independent guide test,"Guide-only fresh machine test, confirm PDF pages/links, sign off",Backlog,P0,Xác minh giám khảo có thể tự dùng sản phẩm chỉ dựa trên tài liệu đã nộp dự kiến.,submission/guide.pdf; submission/slides.pdf; docs/release-checklist.md G5; B05 release record.,báo cáo QA của A; tài liệu chỉ nếu phát hiện lỗi trước nộp và B điều phối.,"- [ ] Dùng trình duyệt/máy khác, không đăng nhập tài khoản nhóm và không chạy server local; làm theo guide từng bước.
@@ -605,7 +605,7 @@ B06,B,03/12,03/12,3,A05;B05;C05;A06;C06,Final submission & runbook,"Leader submi
 - [ ] Kiểm tra lần cuối từ máy khác, health + live text/image, public ZIP; mọi blocker P0 phải giải quyết và re-test trước submit.
 - [ ] Lưu receipt/timestamp, hashes của 4 file ngoài repo public; nếu nộp lại trước cutoff thì kiểm tra lại toàn bộ bundle và lưu receipt mới.
 - [ ] Bàn giao runbook đến 11/12: owner/backup contact, health/error/usage/budget, secret validity, restore same revision nếu được phép; hỏi BTC nếu chưa rõ.","- [ ] Đối chiếu A06/C06 sign-off, receipt chính thức và đúng 4 file; kiểm tra link không cần tài khoản nhóm.
-- [ ] Thử health monitor và xác minh credential/quota/hosting; không ghi thông tin đăng nhập trong runbook public.","Receipt + file hashes + deployed revision + operations handoff; nhóm trưởng xác nhận đã nộp, B chịu trách nhiệm duy trì.",C (A đồng xác nhận),"Task: B06 | Member B | P0 | 3h | Due 03/12/2026 ICT | Dependencies: A05;B05;C05;A06;C06
+- [ ] Thử health monitor và xác minh credential/quota/hosting; không ghi thông tin đăng nhập trong runbook public.","Receipt + file hashes + deployed revision + operations handoff; nhóm trưởng xác nhận đã nộp, B chịu trách nhiệm duy trì.",B,"Task: B06 | Member B | P0 | 3h | Due 03/12/2026 ICT | Dependencies: A05;B05;C05;A06;C06
 
 **Mục tiêu / mô tả:** Điều phối nộp bài đúng hạn và duy trì release đã nộp hoạt động theo thể lệ.
 
@@ -628,14 +628,14 @@ B06,B,03/12,03/12,3,A05;B05;C05;A06;C06,Final submission & runbook,"Leader submi
 
 **Expected deliverables & handoff:** Receipt + file hashes + deployed revision + operations handoff; nhóm trưởng xác nhận đã nộp, B chịu trách nhiệm duy trì.
 
-**Reviewer:** C (A đồng xác nhận)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD"
 C06,C,03/12,03/12,2,C05;B05,Final AI/video verification,"Validate MP4 duration, live AI text/image, model/quota until 11/12, sign off",Backlog,P0,Kiểm tra AI và video lần cuối trên release đã freeze; xác nhận provider đủ khả dụng tới 11/12.,docs/release-checklist.md G5; B05 release manifest; C05 MP4; C04 evaluation.,AI verification report; chỉ sửa sản phẩm trước nộp nếu critical fix được B điều phối.,"- [ ] Chạy một text-only và một image-only synthetic case qua public endpoint từ môi trường ngoài; response AI hợp lệ, evidence/actions/limitations đúng contract.
 - [ ] Xác minh model/prompt version, key validity, quota/budget cùng B; không xoay model âm thầm, không test bằng dữ liệu thật.
 - [ ] Mở MP4 final, xác minh ≤3 phút, file playable, revision đúng, actual claims/metrics đúng C04, không PII/mock.
 - [ ] Đối chiếu video hash với manifest B06; ghi ICT timestamp, request ID, mode, latency, test evidence và blocker.","- [ ] Check real public responses, schema, no safe guarantee; kiểm tra video duration và checksum bằng công cụ sẵn có, không tự nhận pass nếu chưa chạy.
-- [ ] Nếu provider unavailable, đánh dấu Blocked, báo B06 ngay; không dùng fallback làm bằng chứng AI thật.","Final AI/video verification và sign-off hoặc blocker, provider availability handoff đến 11/12; B06 nhận xác nhận trước submit.",A (B xác minh quota),"Task: C06 | Member C | P0 | 2h | Due 03/12/2026 ICT | Dependencies: C05;B05
+- [ ] Nếu provider unavailable, đánh dấu Blocked, báo B06 ngay; không dùng fallback làm bằng chứng AI thật.","Final AI/video verification và sign-off hoặc blocker, provider availability handoff đến 11/12; B06 nhận xác nhận trước submit.",B,"Task: C06 | Member C | P0 | 2h | Due 03/12/2026 ICT | Dependencies: C05;B05
 
 **Mục tiêu / mô tả:** Kiểm tra AI và video lần cuối trên release đã freeze; xác nhận provider đủ khả dụng tới 11/12.
 
@@ -657,6 +657,6 @@ C06,C,03/12,03/12,2,C05;B05,Final AI/video verification,"Validate MP4 duration, 
 
 **Expected deliverables & handoff:** Final AI/video verification và sign-off hoặc blocker, provider availability handoff đến 11/12; B06 nhận xác nhận trước submit.
 
-**Reviewer:** A (B xác minh quota)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD"

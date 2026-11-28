@@ -10,7 +10,57 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MARKDOWN_LINK = re.compile(r"\[[^]]+\]\(([^)]+)\)")
 CARD_HEADING = re.compile(r"^### ([ABC]\d{2}) —", re.MULTILINE)
+CARD_REVIEWER = re.compile(
+    r"^### ([ABC]\d{2}) —.*?^\*\*Reviewer:\*\* ([^\n]+)$",
+    re.MULTILINE | re.DOTALL,
+)
 TASK_ID = re.compile(r"^[ABC]\d{2}$")
+
+GOVERNANCE_FILES = (
+    "AGENTS.md",
+    "README.md",
+    ".github/pull_request_template.md",
+    "ai_artifacts/README.md",
+    "ai_artifacts/contracts/README.md",
+    "ai_artifacts/docs/api-contracts.md",
+    "ai_artifacts/docs/current-state.md",
+    "ai_artifacts/docs/decision-log.md",
+    "ai_artifacts/docs/integration-workflow.md",
+    "ai_artifacts/docs/release-checklist.md",
+    "ai_artifacts/plans/kanban.md",
+    "ai_artifacts/plans/kanban.csv",
+    "ai_artifacts/prompts/Agent_Prompt.md",
+    "ai_artifacts/prompts/Integration_Lead_Prompt.md",
+    "ai_artifacts/skeletons/README.md",
+)
+
+OBSOLETE_GOVERNANCE = (
+    "A/B/C approve before implementation",
+    "A/B/C cùng duyệt",
+    "Task B: A or C is independent approving reviewer",
+    "A/C review current B00 head",
+    "Independent approval recorded (B reviews A/C; A/C reviews B)",
+    "All affected consumers explicitly approve",
+    "sau independent review",
+    "có independent review",
+    "thiếu independent approval",
+)
+
+REQUIRED_GOVERNANCE = {
+    "AGENTS.md": (
+        "Member B là reviewer và integration decision-maker",
+        "AI agent không tự approve, merge",
+    ),
+    ".github/pull_request_template.md": (
+        "Member B review / integration closure",
+        "B verdict: authorize integration / request changes / blocked",
+    ),
+    "ai_artifacts/docs/integration-workflow.md": (
+        "Member B is the sole integration decision-maker",
+        "Do not require a minimum human approval count",
+        "separate read-only AI review session",
+    ),
+}
 
 
 def check_local_links() -> int:
@@ -55,11 +105,65 @@ def check_task_ids() -> set[str]:
     return markdown_ids
 
 
+def check_governance() -> int:
+    kanban = (ROOT / "ai_artifacts" / "plans" / "kanban.md").read_text(
+        encoding="utf-8"
+    )
+    markdown_reviewers = dict(CARD_REVIEWER.findall(kanban))
+    if len(markdown_reviewers) != 21:
+        raise AssertionError(
+            f"expected 21 Markdown reviewer assignments, found {len(markdown_reviewers)}"
+        )
+
+    with (ROOT / "ai_artifacts" / "plans" / "kanban.csv").open(
+        encoding="utf-8-sig", newline=""
+    ) as handle:
+        csv_reviewers = {
+            row["id"]: row["reviewer"]
+            for row in csv.DictReader(handle)
+            if TASK_ID.fullmatch(row["id"])
+        }
+
+    if markdown_reviewers != csv_reviewers:
+        raise AssertionError("reviewer assignments drift between kanban.md and kanban.csv")
+    invalid = {
+        task_id: reviewer
+        for task_id, reviewer in markdown_reviewers.items()
+        if reviewer != "B"
+    }
+    if invalid:
+        raise AssertionError(f"centralized reviewer must be B for every card: {invalid}")
+
+    conflicts: list[str] = []
+    for relative in GOVERNANCE_FILES:
+        content = (ROOT / relative).read_text(encoding="utf-8")
+        for phrase in OBSOLETE_GOVERNANCE:
+            if phrase.casefold() in content.casefold():
+                conflicts.append(f"{relative}: obsolete governance phrase: {phrase}")
+    if conflicts:
+        raise AssertionError("\n".join(conflicts))
+
+    missing: list[str] = []
+    for relative, phrases in REQUIRED_GOVERNANCE.items():
+        content = (ROOT / relative).read_text(encoding="utf-8")
+        for phrase in phrases:
+            if phrase not in content:
+                missing.append(f"{relative}: missing centralized governance phrase: {phrase}")
+    if missing:
+        raise AssertionError("\n".join(missing))
+    return len(markdown_reviewers)
+
+
 def main() -> None:
     links = check_local_links()
     task_ids = check_task_ids()
+    reviewer_assignments = check_governance()
     print(f"PASS docs: {links} local links resolve")
     print(f"PASS tasks: {len(task_ids)} IDs match between kanban.md and kanban.csv")
+    print(
+        "PASS governance: "
+        f"{reviewer_assignments} reviewer assignments map to Member B with no obsolete rule"
+    )
 
 
 if __name__ == "__main__":

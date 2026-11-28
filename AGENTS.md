@@ -21,10 +21,10 @@ Trước khi làm: đọc baseline repository thật, kiểm tra dependency/comm
 
 ## Mandatory rules
 
-- Tôn trọng file ownership; không sửa lane khác nếu chưa có phê duyệt rõ ràng.
-- Không âm thầm đổi shared contract. Báo drift; contract change cần consumer approval và cập nhật đồng bộ canonical docs/schema/fixtures/tests.
+- Tôn trọng file ownership; không sửa lane khác nếu chưa có authorization rõ ràng từ Member B.
+- Không âm thầm đổi shared contract. Báo drift; contract change cần B quyết định sau khi verify compatibility với mọi producer/consumer bị ảnh hưởng và cập nhật đồng bộ canonical docs/schema/fixtures/tests.
 - Chỉ dùng synthetic data; không đưa secret, PII, raw scan hoặc live scam URL vào code, log, prompt hay artifact.
 - Chạy check liên quan và báo lệnh/kết quả thật bằng PASS, FAIL, NOT RUN hoặc BLOCKED.
 - GitHub Issues/Projects là trạng thái live; PR là execution evidence; `current-state.md` là verified baseline; không tạo tracker trùng lặp.
 - Kết thúc bằng Task Completion Report theo `.github/pull_request_template.md`, gồm limitation và downstream handoff.
-- Không tự approve, merge, push, deploy hoặc thay đổi GitHub/cloud settings. Member B điều phối integration sau independent review và post-merge checks.
+- AI agent không tự approve, merge, deploy hoặc thay đổi GitHub/cloud settings; chỉ push khi human cho phép rõ ràng. Member B là reviewer và integration decision-maker. PR do B implement phải có review session AI read-only tách biệt và evidence checks; không gọi đó là independent human approval.

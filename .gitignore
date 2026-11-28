@@ -1,0 +1,48 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+service-account*.json
+credentials*.json
+secrets/
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Node / frontend generated output (lockfiles remain tracked)
+node_modules/
+dist/
+build/
+.wxt/
+.vite/
+coverage/
+
+# Local scans, screenshots and sensitive evaluation output
+/scans/
+/screenshots/
+/tmp/
+/artifacts/local/
+/evaluation/results/local/
+*.local-scan.*
+*.local-screenshot.*
+
+# IDE and OS-local files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

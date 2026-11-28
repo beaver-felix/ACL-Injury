@@ -1,0 +1,46 @@
+---
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contracts:
+    name: Contract validation (Python 3.12)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@v10
+        with:
+          python-version: "3.12"
+          version: "0.13.9"
+          enable-cache: true
+          require-checksums: true
+
+      - name: Install locked test dependencies
+        run: uv sync --locked --group test
+
+      - name: Validate canonical schemas and fixtures
+        run: uv run --locked python -m scripts.check_contracts
+
+      - name: Test shared runtime contracts
+        run: uv run --locked pytest
+
+      - name: Check documentation links and task IDs
+        run: uv run --locked python -m scripts.check_docs

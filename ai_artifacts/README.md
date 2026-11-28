@@ -3,11 +3,12 @@
 Bộ contract khởi tạo cho MoMo Tech Contest 2026 • v0.1 PROPOSED • 27/11/2026 (ICT UTC+7). Tên sản phẩm tạm, không phải sản phẩm chính thức của MoMo. Tất cả task chưa thực hiện.
 
 ## Start here
-1. Cả nhóm đọc `docs/product-brief.md`, `prompts/Agent_Prompt.md`, `plans/kanban.md`.
-2. Gán tên thật cho A/B/C; chốt contract v1 (A/B/C cùng duyệt) trước 18:00 ICT ngày 27/11.
-3. Đọc `docs/architecture-alignment.md`, `docs/api-contracts.md`, `docs/ai-contract.md`, `docs/ui-workflow.md` và `skeletons/README.md` theo lane.
-4. Chuyển các card ở `plans/kanban.csv` vào GitHub Projects (hoặc Trello/Notion). CSV chỉ là dữ liệu import/seed; board là nguồn trạng thái sau khi import. Không duy trì hai board.
-5. Mỗi tối cập nhật `sprints/daily-log.md` bằng kết quả thật; ngày 02/12 freeze bản dự thi; 03/12 nộp trước 18:00.
+1. Mỗi coding session bắt đầu từ root `AGENTS.md`, sau đó theo read order trong file đó; đọc `docs/current-state.md` trước card và contract liên quan.
+2. Cả nhóm đọc `docs/product-brief.md`, `prompts/Agent_Prompt.md`, `plans/kanban.md`.
+3. Gán tên thật cho A/B/C; chốt contract v1 (A/B/C cùng duyệt) trước 18:00 ICT ngày 27/11.
+4. Đọc `docs/architecture-alignment.md`, `docs/api-contracts.md`, `docs/ai-contract.md`, `docs/ui-workflow.md` và `skeletons/README.md` theo lane.
+5. Chuyển các card ở `plans/kanban.csv` vào GitHub Projects (hoặc Trello/Notion). CSV chỉ là dữ liệu import/seed; board là nguồn trạng thái sau khi import. Không duy trì hai board.
+6. Mỗi tối cập nhật `sprints/daily-log.md` bằng kết quả thật; ngày 02/12 freeze bản dự thi; 03/12 nộp trước 18:00.
 
 ## Artifact map (single source of truth)
 | Path | Nội dung | Chủ trì |
@@ -18,8 +19,11 @@ Bộ contract khởi tạo cho MoMo Tech Contest 2026 • v0.1 PROPOSED • 27/1
 | docs/ai-contract.md | AI provider port, rules, prompt, đánh giá | C |
 | docs/ui-workflow.md | UI states, component contract | A |
 | docs/release-checklist.md | QA, demo, submission, runbook | B phối hợp A/C |
+| docs/infrastructure-preflight.md | Readiness evidence và human actions cho B00 | B |
 | plans/kanban.md + kanban.csv | Owner, card, phụ thuộc, AC | B điều phối, mỗi owner cập nhật board |
 | prompts/Agent_Prompt.md | Quy tắc làm việc với AI | Cả nhóm |
+| docs/current-state.md | Baseline hệ thống mới nhất đã kiểm chứng | B |
+| docs/integration-workflow.md + docs/decision-log.md | Quy trình integration và quyết định cross-lane | B |
 | skeletons/README.md | File ownership map, không phải runtime code | B |
 | sprints/daily-log.md | Daily review/handoff | Cả nhóm |
 | research/stack-and-market.md | Stack, competitor, nguồn tham khảo | C |

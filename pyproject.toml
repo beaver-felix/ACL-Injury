@@ -1,0 +1,19 @@
+[project]
+name = "scamlens-vn-contracts"
+version = "0.0.0"
+description = "Shared contract types and validation tooling for ScamLens VN"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "pydantic>=2.12,<3",
+]
+
+[dependency-groups]
+test = [
+  "jsonschema[format]>=4.25,<5",
+  "pytest>=9,<10",
+]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+pythonpath = ["."]
+testpaths = ["tests/contracts"]

@@ -79,8 +79,11 @@ Bản mở rộng của kế hoạch v0.1; giữ nguyên ID, owner, priority, th
 - [ ] Đọc Agent_Prompt, contract và file ownership; chỉ sửa phạm vi được giao, báo mọi cross-lane change.
 - [ ] Acceptance criteria gốc và checklist card có evidence; ghi command + kết quả thật (pass/fail/not run) và lý do nếu chưa chạy.
 - [ ] Lint/test/build liên quan đã chạy; synthetic data; không secret/PII, không log raw input; không mock giả làm thật.
-- [ ] PR nhỏ `feat/<ID>` được reviewer duyệt/merge; cập nhật doc liên quan nếu có thay đổi đã duyệt.
-- [ ] Link PR/commit, artifacts, blockers, next handoff trong issue và daily log. Không Done nếu P0 acceptance chưa đạt.
+- [ ] Task owner nộp Task Completion Report theo PR template; PR nhỏ `feat/<ID>` có independent review.
+- [ ] Mandatory checks pass trên current head; required post-merge checks pass trên integration SHA.
+- [ ] Member B reconcile `current-state.md` và contract/doc bị ảnh hưởng từ evidence đã merge.
+- [ ] Downstream handoff khả dụng, ghi rõ real/fixture/blocked và dependency SHA/PR.
+- [ ] Link PR/commit, artifacts, blockers, next handoff trong issue và daily log. Không Done nếu P0 acceptance chưa đạt, chưa merge hoặc thiếu independent approval.
 
 ## Task assignment prompt
 

@@ -2,9 +2,10 @@
 Canonical onboarding and execution contract; inspired by LIBIF Agent_Prompt, simplified. Read this before changing code.
 
 ## Read order
-1. `ai_artifacts/README.md`, `docs/product-brief.md`, `plans/kanban.md` (current card/AC; check live board).
-2. `skeletons/README.md` for file ownership and `docs/architecture-alignment.md`.
-3. `docs/api-contracts.md` and `contracts/` for all cross-lane work; `docs/ai-contract.md` for C; `docs/ui-workflow.md` for A; `docs/release-checklist.md` for B; daily-log latest entry.
+1. Root `AGENTS.md`, then `ai_artifacts/docs/current-state.md` and `docs/integration-workflow.md`.
+2. Assigned card in `plans/kanban.md` (current card/AC; check live board and dependency evidence).
+3. `skeletons/README.md` for file ownership and `docs/architecture-alignment.md`.
+4. `docs/api-contracts.md` and `contracts/` for all cross-lane work; `docs/ai-contract.md` for C; `docs/ui-workflow.md` for A; `docs/release-checklist.md` for B; relevant decision-log and latest daily-log entry.
 
 ## Non-negotiable
 - Product AI core is real multimodal scam-risk assessment, not simulated success. Don't implement unrelated breadth or train model. Never claim verified safe/fraud, prevention guarantee, or unmeasured performance. Treat uploaded content as untrusted. Never send raw secrets/PII to code tools, log input or save screenshot history. Do not put real provider key in code, examples, client, Git or output.

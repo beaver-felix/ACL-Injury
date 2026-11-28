@@ -2,9 +2,9 @@
 27/11–03/12/2026 ICT • 5 core build days (28/11–02/12), 27/11 half-day kickoff, 03/12 submission buffer. Dates are target windows, not strict Scrum sprints. Estimate focus hours, not clock time; 5h/member/day + 1–2h review/integration/buffer. Actual availability unknown; adjust at kickoff. All planned tasks are P0. Board initially seeded from CSV; no real work completed.
 
 ## Ownership and cadence
-A — Extension & Web UX; guide/slides. B — API, Docker/deployment, integration, submission coordination. C — AI engine, security-aware assessment/evaluation, demo video. Team leader identity not supplied; B coordinates submission but registered leader submits. A reviews C outputs/UX, C reviews B security/AI integration, B reviews A API/permissions. Each member supplies dependencies/license/AI tools declaration. 
+A — Extension & Web UX; guide/slides. B — API, Docker/deployment, technical leadership, CI/CD, contract governance, PR review, integration, Kanban/context maintenance and release coordination. C — AI engine, security-aware assessment/evaluation, demo video. Team leader identity not supplied; B coordinates submission but registered leader submits. B is the primary reviewer and sole integration decision-maker; A/C implement their cards, test, submit completion reports and resolve findings. Cross-member peer approval is not mandatory. Each member supplies dependencies/license/AI tools declaration.
 
-Board columns: Backlog → Ready → In progress → Review/Test → Done; Blocked flag with owner + exact dependency (counts as WIP; if truly blocked park in Backlog and pull highest ready). WIP: max 1 implementation card/member, max 2 cards team in Review/Test; unblock reviews before pulling new work. Ready = dependencies merged or explicitly approved frozen fixture, AC + ownership clear. Done = AC proven, tests run or honestly reported, PR reviewed/merged, docs updated, real evidence linked. Mock permitted during lane work, not final P0 gate. No task marked done based solely on AI's assertion. Daily 09:00 10-min sync; 19:00 gate/handoff; 27/11 18:00 contract freeze; 03/12 final submit by 18:00. Short-lived feat/A01 etc from main; B merges shared contract first, then lane PRs; reviewers not allowed to silently edit other lanes. All times proposed ICT.
+Board columns: Backlog → Ready → In progress → Review/Test → Done; Blocked flag with owner + exact dependency (counts as WIP; if truly blocked park in Backlog and pull highest ready). WIP: max 1 implementation card/member, max 2 cards team in Review/Test; unblock reviews before pulling new work. Ready = dependencies merged or explicitly B-authorized frozen fixture, AC + ownership clear. Done follows the common Definition of Done below, including B review/authorization, merge and post-merge verification. Mock permitted during lane work, not final P0 gate. No task is Done based solely on AI assertion. Daily 09:00 10-min sync; 19:00 gate/handoff; 27/11 18:00 contract freeze; 03/12 final submit by 18:00. Short-lived feat/A01 etc from main; B merges shared contract first, then lane PRs. AI agents never approve or merge. All times proposed ICT.
 
 ## Cards by lane
 Each date is in 2026; dependencies denote start/finish prerequisites, except frozen fixture allows parallel A/C work. Read actual board for status after import. Hours exclude review/buffer.
@@ -25,7 +25,7 @@ Each date is in 2026; dependencies denote start/finish prerequisites, except fro
 
 | ID | Date | h | Depends | Deliverable | Acceptance criteria |
 |---|---|---:|---|---|---|
-| B00 | 27/11 | 3 | - | Contract freeze + repo/infra spike | Schema/fixture và port được 3 người duyệt; repo CI skeleton, public account/billing |
+| B00 | 27/11 | 3 | - | Contract freeze + repo/infra spike | Schema/fixture và port được B freeze sau compatibility verification; repo CI skeleton, public account/billing |
 | B01 | 28/11 | 5 | B00 | FastAPI + Docker + public health | Docker clean build, GET health public HTTPS, validation/fixture local, CI smoke |
 | B02 | 29/11 | 5 | B01;C01 | Real analyze integration | Wire provider, body/image validation, timeout, no-store; deploy real end-to-end |
 | B03 | 30/11 | 5 | B02 | Security + integration gate | Rate/concurrency, no logs, invalid/oversize, 429/timeouts, production rejects mock; all P0 smoke |
@@ -72,15 +72,21 @@ Bản mở rộng của kế hoạch v0.1; giữ nguyên ID, owner, priority, th
 - Bản Kanban gốc `plans/kanban.md` là overview lịch và dependency; phần card dưới đây bổ sung chi tiết, không tạo board thứ hai. Nếu dùng bản ZIP v0.2, overview và card đã được ghép vào cùng `plans/kanban.md`. CSV là seed/export để import hoặc copy vào issue; live board giữ trạng thái thật. Không đánh dấu Done trực tiếp ở nhiều nơi.
 - Mỗi card có Implementation checklist, Testing checklist và Deliverable/handoff. Đây là subtasks, không tách 21 card thành hàng trăm issues. Checklists không thay thế acceptance criteria gốc.
 - Estimate là giờ tập trung của owner; checklist không tăng ngân sách giờ một cách ngầm định. Nếu hết timebox, báo Blocked hoặc cắt polish/P1; không bỏ safety/real AI/public demo. Review/integration buffer ngoài estimate.
-- Ready khi dependency đã merge hoặc có frozen fixture được duyệt; ghi rõ dependency PR. A02 có thể chạy fixture song song B02 nhưng G2 bắt buộc cả hai tích hợp AI thật. B05/A05/C05 phối hợp cùng revision, không đợi đến cuối ngày mới chốt.
+- Ready khi dependency đã merge hoặc có frozen fixture được B authorize; ghi rõ dependency PR. A02 có thể chạy fixture song song B02 nhưng G2 bắt buộc cả hai tích hợp AI thật. B05/A05/C05 phối hợp cùng revision, không đợi đến cuối ngày mới chốt.
 - WIP 1 card/member, Review/Test tối đa 2 card/team; reviewer ghi actual evidence và không sửa lane khác. Daily sync 09:00, gate 19:00 (G0/G4/G5 theo mốc riêng trong overview); cập nhật `sprints/daily-log.md`.
 
 ## Definition of Done chung
-- [ ] Đọc Agent_Prompt, contract và file ownership; chỉ sửa phạm vi được giao, báo mọi cross-lane change.
-- [ ] Acceptance criteria gốc và checklist card có evidence; ghi command + kết quả thật (pass/fail/not run) và lý do nếu chưa chạy.
-- [ ] Lint/test/build liên quan đã chạy; synthetic data; không secret/PII, không log raw input; không mock giả làm thật.
-- [ ] PR nhỏ `feat/<ID>` được reviewer duyệt/merge; cập nhật doc liên quan nếu có thay đổi đã duyệt.
-- [ ] Link PR/commit, artifacts, blockers, next handoff trong issue và daily log. Không Done nếu P0 acceptance chưa đạt.
+- [ ] Implementation được assigned owner hoàn thành đúng scope.
+- [ ] Acceptance criteria và checklist kỹ thuật có evidence thật.
+- [ ] Automated/manual checks liên quan pass; NOT RUN hoặc blocker được ghi rõ.
+- [ ] Task owner nộp Task Completion Report theo PR template.
+- [ ] Member B review implementation, evidence, security/privacy và compatibility liên quan.
+- [ ] Mọi blocking review finding đã được resolve.
+- [ ] Member B authorize integration; với PR do B implement phải có separate read-only AI review report, không gọi là independent human approval.
+- [ ] Pull request đã merge vào `main`.
+- [ ] Required post-merge verification pass trên integration SHA.
+- [ ] Member B reconcile `current-state.md` và canonical contract/docs bị ảnh hưởng.
+- [ ] Downstream handoff khả dụng, ghi rõ real/fixture/blocked và dependency SHA/PR.
 
 ## Task assignment prompt
 
@@ -88,7 +94,7 @@ Bản mở rộng của kế hoạch v0.1; giữ nguyên ID, owner, priority, th
 Bạn là Member [A|B|C], thực hiện task [ID].
 Đọc ai_artifacts/prompts/Agent_Prompt.md, plans/kanban.md và card [ID].
 Đọc các contract và skeleton được liệt kê trong card; kiểm tra repo trước khi sửa.
-Chỉ chỉnh sửa allowed paths; không đổi API/schema/dependency chung nếu chưa được duyệt.
+Chỉ chỉnh sửa allowed paths; không đổi API/schema/dependency chung nếu chưa được B authorize sau compatibility verification.
 Thực hiện checklist, chạy test liên quan; không tạo mock thành công giả hoặc đưa secrets/PII vào code/log.
 Báo blocker, owner và interface nếu cần đổi lane. Dừng khi hoàn thành AC hoặc bị blocked.
 Trả về: task ID, files, commands + actual results, evidence, PR, known limitations, handoff.
@@ -150,7 +156,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 
 **Expected deliverables & handoff:** Wireframe hoặc mô tả trạng thái đã duyệt; danh sách câu hỏi BTC; 3 mô tả fixture; scope sign-off. B00 nhận flow và ràng buộc; C00 nhận tình huống.
 
-**Reviewer:** B (C góp ý tình huống/AI)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD
 
@@ -285,7 +291,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 
 **Expected deliverables & handoff:** Guide draft, slide outline, demo flow có timestamp gợi ý, URL đã xác nhận; B04/C05 nhận luồng demo và asset; A05 chờ C04 metrics.
 
-**Reviewer:** B (C duyệt AI claims)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD
 
@@ -308,7 +314,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 - [ ] Điền số liệu C04 với raw counts, holdout n, model/prompt version, baseline, limitations; không suy rộng giảm thiệt hại.
 - [ ] Chốt nội dung 8 slide (tối đa 10 trang) và guide tối đa 1 A4; link đọc được và click được nếu công cụ xuất hỗ trợ.
 - [ ] Kiểm tra fonts tiếng Việt, khoảng trắng, bố cục, contrast; ghi version theo commit/release B05.
-- [ ] Gửi B/C review các claims và URL; freeze UI, chỉ critical fix qua B và re-test.
+- [ ] Gửi B review claims và URL, đối chiếu C evaluation evidence; freeze UI, chỉ critical fix qua B và re-test.
 
 **Acceptance criteria (gốc):** A4 1 page, slide PDF ≤10 pages with actual metrics, reviewed public URL
 
@@ -318,7 +324,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 
 **Expected deliverables & handoff:** 2 PDF final + sign-off + version; B06 nhận file/hashes để nộp; A06 dùng guide thực tế để kiểm tra độc lập.
 
-**Reviewer:** B (C duyệt số liệu)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD
 
@@ -369,7 +375,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 
 **Required reading:** docs/architecture-alignment.md; docs/api-contracts.md; docs/ai-contract.md; contracts/; skeletons/README.md.
 
-**File ownership:** contracts, backend/app/contracts.py nếu khởi tạo, root config/README, .github/workflows/**; A/C duyệt schema.
+**File ownership:** contracts, backend/app/contracts.py nếu khởi tạo, root config/README, .github/workflows/**; B governs schema, A/C cung cấp compatibility evidence.
 
 **Implementation checklist:**
 - [ ] Khởi tạo Git repo, main, .gitignore (.env, node_modules, caches, scans), PR template, CI skeleton; mời A/C và phân branch feat/<ID>.
@@ -377,17 +383,17 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 - [ ] Chốt AnalysisInput, ModelAssessment, EngineResult, async assess port; B sở hữu transport metadata, C sở hữu inference; A render-only.
 - [ ] Kiểm thử schema với example request/response/error; thống nhất dùng ai_artifacts/contracts làm nguồn canonical, không tạo bản copy lệch.
 - [ ] Xác minh account cloud/billing, quyền deploy, ngân sách/secret store và phương án dự phòng; phối hợp C00 provider key/quota; không chia sẻ secret qua Git.
-- [ ] Chốt owner, review và timestamp freeze với cả 3; xác nhận FAQ/deadline và gửi câu hỏi BTC nếu cần trước hạn.
+- [ ] B chốt owner, compatibility evidence và timestamp freeze; xác nhận FAQ/deadline và gửi câu hỏi BTC nếu cần trước hạn.
 
-**Acceptance criteria (gốc):** Schema/fixture và port được 3 người duyệt; repo CI skeleton, public account/billing
+**Acceptance criteria (gốc):** Schema/fixture và port được B freeze sau compatibility verification; repo CI skeleton, public account/billing
 
 **Testing checklist:**
 - [ ] Schema/examples hợp lệ, repo access A/B/C, CI skeleton chạy hoặc ghi blocker; xác nhận provider/cloud với bằng chứng không lộ key.
-- [ ] A/C đọc và đồng ý field names, limits, error semantics, port trước khi merge.
+- [ ] B xác minh field names, limits, error semantics và port tương thích với A/C producer/consumer paths trước khi freeze.
 
 **Expected deliverables & handoff:** PR contract freeze G0, commit SHA, infra decision, `.env.example` placeholders nếu có; A01/C01/B01 nhận frozen interface.
 
-**Reviewer:** C (A đồng duyệt contract)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD
 
@@ -421,7 +427,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 
 **Expected deliverables & handoff:** Dockerfile/compose, public health URL, CI log và API fixture test; B02 nhận routes/models, A02 nhận API origin.
 
-**Reviewer:** C
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD
 
@@ -455,7 +461,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 
 **Expected deliverables & handoff:** Public real endpoint, Docker revision, integration evidence và danh sách lỗi; A03/B03/C03 nhận URL, schema/port version, test details.
 
-**Reviewer:** C
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD
 
@@ -489,7 +495,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 
 **Expected deliverables & handoff:** Security regression report, rate config, privacy evidence, G3 decision; B04 nhận P0 issues và triển khai giới hạn production.
 
-**Reviewer:** C
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD
 
@@ -522,7 +528,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 
 **Expected deliverables & handoff:** Release candidate revision, URL/download, root README và QA evidence; A05/C05 nhận đúng release candidate; B05 chuẩn bị tag/ZIP.
 
-**Reviewer:** C
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD
 
@@ -541,7 +547,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 **File ownership:** submission/source.zip, release manifest, root README, deployment metadata; không tự sửa code lane khác.
 
 **Implementation checklist:**
-- [ ] Xác nhận G4 với A/C: metrics thật, P0 tests, public URL, UI và AI release candidate; chốt commit/tag v0.1-contest và image digest.
+- [ ] B xác nhận G4 từ evidence A/C: metrics thật, P0 tests, public URL, UI và AI release candidate; chốt commit/tag v0.1-contest và image digest.
 - [ ] Đảm bảo C05 quay đúng revision, A05 dùng đúng URL/metrics; critical fix cần review, rebuild/re-test và quay lại phần bị ảnh hưởng trước freeze.
 - [ ] Đóng gói toàn bộ extension/demo/backend/evaluation/contracts/ai_artifacts + lockfiles, Dockerfile, compose, .env.example, README; không .env/keys/.git/node_modules/cache/raw scans.
 - [ ] Unzip vào thư mục sạch, kiểm tra cấu trúc và run/build theo README; kiểm tra secret scan và dependencies/licenses declarations.
@@ -555,7 +561,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 
 **Expected deliverables & handoff:** source.zip + release manifest + verification log + sign-off; A06/C06 nhận revision/hash; B06 nhận source ZIP và runbook.
 
-**Reviewer:** C
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD
 
@@ -588,7 +594,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 
 **Expected deliverables & handoff:** Receipt + file hashes + deployed revision + operations handoff; nhóm trưởng xác nhận đã nộp, B chịu trách nhiệm duy trì.
 
-**Reviewer:** C (A đồng xác nhận)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD
 
@@ -614,17 +620,17 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 - [ ] Chuẩn bị 3 text + 3 screenshot synthetic có risky/benign/ambiguous; không dùng dữ liệu thật hoặc link lừa đảo hoạt động.
 - [ ] Gọi thử multimodal và structured output, validate JSON với schema/semantic rules; đo elapsed và ghi lỗi/truncation.
 - [ ] So sánh ít nhất tính khả dụng, chất lượng VN, độ trễ và chi phí dự kiến giữa lựa chọn khả thi; pin model ID/SDK version đã test, đề xuất fallback provider nếu lỗi.
-- [ ] Ghi provider privacy disclosure, budget/quota đến 11/12 và risk; gửi B config names, requirements đề xuất, A/C xác nhận G0.
+- [ ] Ghi provider privacy disclosure, budget/quota đến 11/12 và risk; gửi B config names/requirements và A/C lane evidence để B quyết định G0.
 
 **Acceptance criteria (gốc):** 3 text + 3 ảnh synthetic; pin model ID, quota/privacy/latency, structured JSON
 
 **Testing checklist:**
 - [ ] 6 synthetic calls, ghi actual pass/fail, latency, mode, model ID; không ghi key/ảnh thật; kiểm tra text/image-only.
-- [ ] Nếu không có model usable, đánh dấu Blocked và báo B00 ngay, không fake success; switch chỉ sau team duyệt.
+- [ ] Nếu không có model usable, đánh dấu Blocked và báo B00 ngay, không fake success; switch chỉ sau B authorize.
 
 **Expected deliverables & handoff:** Spike report, verified model ID, SDK/version, quota/terms decision; B00/B01 nhận dependency/env, C01 nhận provider configuration.
 
-**Reviewer:** A (B duyệt infra/quota)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD
 
@@ -657,7 +663,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 
 **Expected deliverables & handoff:** Engine module, prompt v1, unit test và real smoke evidence; B02 nhận import path, config, model ID, expected errors; C02 nhận adapter.
 
-**Reviewer:** A
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD
 
@@ -690,7 +696,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 
 **Expected deliverables & handoff:** Fallback policy/tests, 12 dev fixtures + labels, baseline runner, dev metrics; C03 nhận bộ dev và prompt version, B03 nhận failure semantics.
 
-**Reviewer:** A
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD
 
@@ -723,7 +729,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 
 **Expected deliverables & handoff:** 30 labeled fixtures + split manifest/hash, adversarial report, frozen model/prompt/baseline; C04 nhận holdout locked, B04 nhận safety sign-off.
 
-**Reviewer:** A (B duyệt integration)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD
 
@@ -752,11 +758,11 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 
 **Testing checklist:**
 - [ ] Kiểm tra metrics bằng phép tính từ CSV, match sample count và model/prompt versions; kiểm tra fallback vs AI không gộp sai.
-- [ ] Review với A/B: claim chỉ trong phạm vi synthetic holdout, không khẳng định hiệu quả thực địa hoặc giảm thiệt hại.
+- [ ] B review claim dựa trên A requirements và evaluation evidence: chỉ trong phạm vi synthetic holdout, không khẳng định hiệu quả thực địa hoặc giảm thiệt hại.
 
 **Expected deliverables & handoff:** Evaluation report + raw sanitized results + baseline comparison table + limitations; A05/C05 dùng số liệu chính xác, B05 nhận G4 evidence.
 
-**Reviewer:** A
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD
 
@@ -779,7 +785,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 - [ ] Storyboard ~165s: problem → Chrome capture/crop/consent → real result evidence/actions → benign/ambiguous → web demo cùng API → actual metrics/limitations.
 - [ ] Quay thực tế latency và response; không mock, không jump cut khiến người xem hiểu sai độ trễ; nếu request fail, xử lý trung thực hoặc quay lại.
 - [ ] Hiển thị phân biệt AI vs fallback, LOW không xác nhận an toàn, user quyết định; giải thích AI hiểu ngữ cảnh hơn lexical baseline theo số C04.
-- [ ] Xuất MP4 ≤180s, kiểm tra audio/subtitle tiếng Việt đọc được, không nội dung cá nhân; phối hợp A/B review trước freeze.
+- [ ] Xuất MP4 ≤180s, kiểm tra audio/subtitle tiếng Việt đọc được, không nội dung cá nhân; gửi B review trước freeze và đối chiếu A demo flow.
 
 **Acceptance criteria (gốc):** ≤3 min running real release candidate; no personal data; actual results/limitations
 
@@ -789,7 +795,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 
 **Expected deliverables & handoff:** demo.mp4 final + duration + revision + sign-off; C06 verify video, B06 nhận video final.
 
-**Reviewer:** A (B duyệt revision)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD
 
@@ -821,7 +827,7 @@ Trả về: task ID, files, commands + actual results, evidence, PR, known limit
 
 **Expected deliverables & handoff:** Final AI/video verification và sign-off hoặc blocker, provider availability handoff đến 11/12; B06 nhận xác nhận trước submit.
 
-**Reviewer:** A (B xác minh quota)
+**Reviewer:** B
 
 **Evidence:** PR/commit: TBD · commands/results: TBD · artifacts: TBD · blockers: TBD
 
@@ -833,7 +839,7 @@ Các ID dưới đây đã có trong overview; không nằm trong 21 P0, chưa �
 
 | ID | Owner | Hướng dẫn / nghiệm thu tối thiểu |
 |---|---|---|
-| P1-01 | B/C | Kiểm tra điều khoản URL reputation; chỉ tra domain đã được duyệt, không truy cập URL tùy ý. Kết quả reputation chỉ là tín hiệu bổ sung, không chứng nhận an toàn. Contract change cần A/B/C duyệt. |
+| P1-01 | B/C | Kiểm tra điều khoản URL reputation; chỉ tra domain đã được duyệt, không truy cập URL tùy ý. Kết quả reputation chỉ là tín hiệu bổ sung, không chứng nhận an toàn. Contract change cần B authorize sau compatibility verification. |
 | P1-02 | A | QR decode cục bộ từ ảnh đã duyệt; hiển thị dạng text inert, không mở link hay xác thực thanh toán. Test QR lỗi/không có QR và quyền tối thiểu. |
 | P1-03 | A | Cải thiện crop keyboard/drag/resize; test payload chỉ gồm ảnh sau crop; không thay đổi consent. |
 | P1-04 | C | Thêm synthetic evaluation scenarios độc lập; phân biệt tập bổ sung và holdout gốc; không dùng test để tune rồi báo như holdout mới. |
